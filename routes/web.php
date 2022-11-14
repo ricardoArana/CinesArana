@@ -1,5 +1,10 @@
 <?php
 
+use App\Http\Controllers\CineController;
+use App\Http\Controllers\PeliculaController;
+use App\Models\Cine;
+use Barryvdh\DomPDF\PDF;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -12,7 +17,44 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
+Route::get('/', [CineController::class, 'notuser'])
+->name('notuser');
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/dashboard', [CineController::class, 'index'])
+->name('inicio');
+
+Route::get('/peliculas', [CineController::class, 'peliculas'])
+->name('peliculas');
+
+Route::get('/cines', [CineController::class, 'cines'])
+->name('cines');
+
+Route::get('/reserva/{proyeccion}', [CineController::class, 'reserva'])
+->name('reserva');
+
+Route::post('/reservar', [CineController::class, 'reservar'])
+->name('reservar');
+
+Route::get('/preguntas', [CineController::class, 'preguntas'])
+->middleware(['auth'])->name('preguntas');
+
+Route::get('/miPerfil', [CineController::class, 'miPerfil'])
+->middleware(['auth'])->name('miPerfil');
+
+Route::post('/cambiarCineFav', [CineController::class, 'cambiarCineFav'])
+->name('cambiarCineFav');
+
+Route::post('/email', [App\Http\Controllers\EmailController::class, 'sendEmail'])
+->name('send.email');
+
+Route::get('/pdf', function () {
+    $pdf = app('dompdf.wrapper');
+    $user = Auth::user();
+    $reservas = Auth::user()->reservas;
+    $cines = Cine::all();
+    $pdf->loadView('pruebaPdf', compact('user', 'cines', 'reservas'))->setOptions(['defaultFont' => 'sans-serif']);
+    return $pdf->download('pruebapdf.pdf');
+  });
+
+
+require __DIR__.'/auth.php';
