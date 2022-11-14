@@ -2,8 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\StoreLocalidadRequest;
+use App\Http\Requests\UpdateLocalidadRequest;
 use App\Models\Localidad;
-use Illuminate\Http\Request;
 
 class LocalidadController extends Controller
 {
@@ -30,10 +31,10 @@ class LocalidadController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  \App\Http\Requests\StoreLocalidadRequest  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StoreLocalidadRequest $request)
     {
         //
     }
@@ -63,11 +64,11 @@ class LocalidadController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  \App\Http\Requests\UpdateLocalidadRequest  $request
      * @param  \App\Models\Localidad  $localidad
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Localidad $localidad)
+    public function update(UpdateLocalidadRequest $request, Localidad $localidad)
     {
         //
     }

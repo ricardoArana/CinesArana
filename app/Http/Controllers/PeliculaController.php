@@ -2,8 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\StorePeliculaRequest;
+use App\Http\Requests\UpdatePeliculaRequest;
+use App\Models\Cine;
 use App\Models\Pelicula;
-use Illuminate\Http\Request;
+use App\Models\User;
+use Illuminate\Support\Facades\Auth;
 
 class PeliculaController extends Controller
 {
@@ -14,7 +18,9 @@ class PeliculaController extends Controller
      */
     public function index()
     {
-        //
+/*         return view('dashboard', [
+            'cines' => Cine::all(),
+        ]); */
     }
 
     /**
@@ -30,10 +36,10 @@ class PeliculaController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  \App\Http\Requests\StorePeliculaRequest  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StorePeliculaRequest $request)
     {
         //
     }
@@ -63,11 +69,11 @@ class PeliculaController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  \App\Http\Requests\UpdatePeliculaRequest  $request
      * @param  \App\Models\Pelicula  $pelicula
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Pelicula $pelicula)
+    public function update(UpdatePeliculaRequest $request, Pelicula $pelicula)
     {
         //
     }
