@@ -1,7 +1,7 @@
 <x-guest-layout>
     <div class="h-16"></div>
     @foreach ($cines as $cine)
-    <div class=" pt-3 mb-3 mx-5"style="background-color: #FDF4E4;">
+    <div class=" pt-3 mb-3 mx-5 text-white" style="background-color: black;">
     <div class="flex justify-between mt-20 pb-12 mb-10">
         <div class="h-96 ml-40">
             <img class="h-96 w-full" src="{{ URL($cine->url) }}" alt="imagen del cine">

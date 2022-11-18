@@ -3,7 +3,7 @@
     #boton-fav{
         color: white;
         margin-left: 2%;
-        background-color: #32ad57;
+        background-color: #000c92;
         padding: 5px;
         border-radius: 15px;
     }
@@ -12,7 +12,7 @@
     }
 </style>
     <div class="h-16"></div>
-    <div style="background-color: #FDF4E4;" class="text-3xl text-center pt-5 pb-3 mb-3 mx-5">
+    <div style="background-color: black;" class="text-3xl text-white text-center pt-5 pb-3 mb-3 mx-5">
         <div id="cineFavorito" class="mt-3 mb-10 text-xl">
             @if ($user->cine_fav == '' || $user->cine_fav == 'nada')
         <p class="mb-6"><b>{{$user->name}}</b>, no tienes <b>ningún cine </b> como favorito, puedes seleccionar uno aquí:</p>
@@ -25,9 +25,9 @@
         <form action="{{route('cambiarCineFav')}}" method="post">
             @method('POST')
             @csrf
-            <select name="cine" id="cine">
+            <select class="text-black" name="cine" id="cine">
             @foreach ($cines as $cine)
-            <option value="{{$cine->nombre}}">{{$cine->nombre}}</option>
+            <option class="text-black" value="{{$cine->nombre}}">{{$cine->nombre}}</option>
             @endforeach
             <option value="nada">Quitar cine favorito</option>
             <input type="submit" id="boton-fav" value="Cambiar favorito">
@@ -54,7 +54,7 @@ dd($reservas->count())
     $pelicula = '';
     $hora = '';
 @endphp
-<div style="margin-top: 3%; padding-top:1%;background-color: #FDF4E4;" class="mx-5">
+<div style="margin-top: 3%; padding-top:1%;background-color: black;" class="text-white mx-5">
 <p class="pb-10 text-4xl text-center">Estas son tus reservas: </p>
 </div>
 @foreach ($reservas as $reserva)
@@ -118,10 +118,10 @@ dd($reservas->count())
             @endforeach --}}
 
 
-        <div style="display: block; background-color:#FDF4E4" id="mostrarReserva" class="pt-3 mb-3 mx-5">
+        <div style="display: block; background-color:black" id="mostrarReserva" class="text-white pt-3 mb-3 mx-5">
             <div class="flex justify-between mt-20 pb-12 mb-10">
                 <div class="h-96 ml-40">
-                    <img style="border: 5px solid #95F0B0;" class="h-96 w-full" src="{{ URL($reserva->pelicula->url) }}" alt="imagen de la pelicula">
+                    <img style="border: 5px solid white;" class="h-96 w-full" src="{{ URL($reserva->pelicula->url) }}" alt="imagen de la pelicula">
                 </div>
                 <div class="h-96 w-1/2 mr-44 ml-16 text-xl text-left">
                     <p class="text-3xl pb-3"><b>{{ $reserva->cine->nombre }}</b>
@@ -148,7 +148,7 @@ dd($reservas->count())
     @endif
 @endforeach
 <div class="flex justify-center">
-    <a class=" bg-[#FDF4E4] hover:bg-white p-3 rounded btn btn-primary" href="{{  URL('/pdf')  }}">Descargar PDF</a>
+    <a class="text-white text-2xl bg-[#000c92] hover:bg-white hover:text-black border-2 border-black py-4 px-6 rounded btn btn-primary" href="{{  URL('/pdf')  }}">Descargar PDF</a>
     @endif
 </div>
 </x-guest-layout>

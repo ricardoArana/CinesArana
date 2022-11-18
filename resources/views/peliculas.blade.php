@@ -37,7 +37,7 @@
         }
         </style>
         <div class="w-full h-16"></div>
-        <div style="background-color: #FDF4E4;" class=" p-0 carousel pt-5 rounded relative overflow-hidden shadow-xl border-2 border-black bg-white">
+        <div style="background-color: black;" class="text-white p-0 carousel pt-5 rounded relative overflow-hidden shadow-xl border-2 border-white bg-white">
             <p class="text-6xl text-center">Películas</p>
             <div class="mb-0 pb-0">
               <!--Slide 1-->
@@ -49,15 +49,15 @@
               <label for="carousel-3"
                 class="control-1 w-10 h-10 ml-2 md:ml-10 absolute cursor-pointer  font-bold text-black hover:text-white rounded-full bg-white hover:bg-blue-700 leading-tight text-center z-10 inset-y-0 left-0 my-auto flex justify-center content-center">
             </label>
-              <label for="carousel-2" style="background-color: #FDF4E4;"
-                class="next control-1 w-10 h-10 mr-2 md:mr-10 absolute cursor-pointer  font-bold text-black hover:text-white rounded-full bg-white leading-tight text-center z-10 inset-y-0 right-0 my-auto">
+              <label for="carousel-2"
+                class="next control-1 bg-black text-white w-10 h-10 mr-2 md:mr-10 absolute cursor-pointer  font-bold hover:text-white rounded-full leading-tight text-center z-10 inset-y-0 right-0 my-auto">
             </label>
 
               <!--Slide 2-->
               <input class="carousel-open hidden" type="radio" id="carousel-2" name="carousel" aria-hidden="true" hidden="">
               <div class="carousel-item mb-14 mt-8 absolute opacity-0 bg-center bg-contain bg-no-repeat" style="height:500px; background-image: url({{ URL('img/cars.png') }})">
               </div>
-              <label for="carousel-1" style="background-color: #FDF4E4;"
+              <label for="carousel-1" style="background-color: black;"
                 class="control-2 w-10 h-10 ml-2 md:ml-10 absolute cursor-pointer font-bold text-black rounded-full leading-tight text-center z-10 inset-y-0 left-0 my-auto">
             </label>
               <label for="carousel-3"
@@ -94,12 +94,12 @@
 
             </div>
           </div>
-    <div class=" h-auto bg-white mx-12 mt-5 pt-5" style="background-color: #FDF4E4;">
+    <div class=" h-auto bg-black text-white mx-12 mt-5 pt-5">
 
 @foreach ($peliculas as $pelicula)
     <div class="flex justify-between mt-20 pb-12 mb-10">
         <div class="h-96 ml-40">
-            <img class="h-96 w-full" src="{{ URL($pelicula->url) }}" alt="imagen de la pelicula">
+            <img class="h-96 w-full border-2 border-white" src="{{ URL($pelicula->url) }}" alt="imagen de la pelicula">
         </div>
         <div class="h-96 w-1/2 mr-44 ml-16 text-xl text-left">
             <p class="text-3xl pb-3"><b>{{$pelicula->titulo}}</b></p>

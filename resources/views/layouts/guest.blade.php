@@ -26,10 +26,10 @@
     </style>
 </head>
 
-<body style="background-color: #FDF4E4; font-family: rockwell">
+<body style="background-color: black; font-family: rockwell">
     <div class="font-sans text-gray-900 antialiased ">
-        <header class="w-full h-28" style="background-color: #FDF4E4; font-family: Rockwell">
-            <div class="flex justify-between mx-36 my-10 p-1 border-b-2 border-y-green-900">
+        <header class="w-full h-28 text-white" style="background-color: black; font-family: Rockwell">
+            <div class="flex justify-between mx-36 my-10 p-1 border-b-2 border-y-white">
                 @if (Auth::user())
                 <a class="text-3xl ml-4 hover:animate-waving hover:text-blue-800"
                     href="{{ route('inicio') }}"><img style="height: 100px; width: 100px;"
@@ -39,11 +39,11 @@
                     href="{{ route('notuser') }}"><img style="height: 100px; width: 100px;"
                     src="{{ URL('img/logo.png') }}" alt="logo"></a>
                 @endif
-                <a class="text-5xl h-10 mt-12 hover:animate-waving hover:text-green-800" href="{{ route('cines') }}">CINES</a>
-                <a  class="text-5xl h-10 mt-12 hover:animate-waving hover:text-green-800"
+                <a class="text-5xl h-10 mt-12 hover:animate-waving hover:text-blue-800" href="{{ route('cines') }}">CINES</a>
+                <a  class="text-5xl h-10 mt-12 hover:animate-waving hover:text-blue-800"
                     href="{{ route('peliculas') }}">PELÍCULAS</a>
                 @if (empty(Auth::user()))
-                    <a class="text-5xl h-10 mt-12 mr-4 hover:animate-waving hover:text-green-800"
+                    <a class="text-5xl h-10 mt-12 mr-4 hover:animate-waving hover:text-blue-800"
                         href="{{ route('login') }}">INICIAR SESIÓN</a>
                 @else
                     {{-- <a class="text-3xl mr-4 hover:animate-waving hover:text-blue-800"
@@ -56,17 +56,17 @@
                                 <path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z" />
                             </svg>
                         </button>
-                        <ul class="dropdown-menu absolute hidden pt-2 text-xl w-44">
+                        <ul class="border-white border-b-2 dropdown-menu absolute hidden pt-2 text-xl w-44">
                                     <li class=""><a
-                                        class="bg-gray-200 hover:bg-gray-400 py-2 px-4 block whitespace-no-wrap"
+                                        class="bg-black hover:bg-gray-400 py-2 px-4 block whitespace-no-wrap"
                                         href="{{ route('miPerfil') }}">Mi perfil</a></li>
                             <li class=""><a
-                                    class="bg-gray-200 hover:bg-gray-400 py-2 px-4 block whitespace-no-wrap"
+                                    class="bg-black hover:bg-gray-400 py-2 px-4 block whitespace-no-wrap"
                                     href="{{ route('preguntas') }}">Necesito ayuda</a></li>
                             <li class="">
                                 <form action="logout" method="post">
                                     @csrf
-                                    <input type="submit" value="Cerrar Sesión" class="text-left w-44 bg-gray-200 hover:bg-gray-400 py-2 px-4 block whitespace-no-wrap"/>
+                                    <input type="submit" value="Cerrar Sesión" class="text-left w-44 bg-black hover:bg-gray-400 py-2 px-4 block whitespace-no-wrap"/>
                                 </form>
                             </li>
                         </ul>
@@ -86,12 +86,12 @@
         </div>
     @endif
         <main class="mx-1 h-auto mt-4 pb-10 bg-contain"
-            style="background-color: #BEF7CF">
+            style="background-image: url({{URL('img/cineFondo.jpg')}}); background-repeat: repeat; background-size: 563px 700px;">
             {{ $slot }}
         </main>
-        <footer class="flex justify-center bg-gray-900   w-full h-96 mt-1">
-            <div style="background-color: #FDF4E4;" class="bg-gray-100 mt-4 w-full mx-10 h-5/6">
-                <div style="background-color: #FDF4E4;" class="grid grid-rows-3 grid-flow-col gap-4  h-4/5">
+        <footer class="flex justify-center bg-white   w-full h-96 mt-1">
+            <div style="background-color: black;" class="text-white bg-gray-100 mt-4 w-full mx-10 h-5/6">
+                <div style="background-color: black;" class="text-white grid grid-rows-3 grid-flow-col gap-4  h-4/5">
                     <div class="absolute mt-10">
                         <p class="ml-44 text-2xl">cines.arana@gmail.com</p>
                     </div>
@@ -107,13 +107,13 @@
                     </div>
                     <div class="col-span-2 row-span-4 text-right mr-44 mt-10">
                         <p class="text-2xl">¿Tiene algún problema?</p>
-                        <p class="text-xl mr-3 mt-2"> <a class="text-[#1cc14e]" href="{{route('preguntas')}}">Contacte</a> con nosotros
+                        <p class="text-xl mr-3 mt-2"> <a class="text-white hover:text-[#2635da] cursor-pointer" href="{{route('preguntas')}}">Contacte</a> con nosotros
                         </>
                     </div>
                 </div>
             </div>
             <div class="w-full absolute mt-20">
-                <p class="text-center text-2xl"><a class="hover:text-green-800" href="{{ route('cines') }}"> Nuestros
+                <p class="text-center text-2xl text-white"><a class="hover:text-[#2635da]" href="{{ route('cines') }}"> Nuestros
                         Cines</a>
                 </p>
             </div>
