@@ -33,7 +33,7 @@
     </form>
 </div>
 <div class="w-max h-16"></div>
-<div style="background-color: black" class="text-white mx-12 h-auto border-black border-2">
+<div style="background-color: black" class="opacity-95 text-white mx-12 h-auto border-black border-2">
     <p class="text-center text-7xl mb-10 pt-5">Cartelera</p>
     <p class="text-center text-2xl">
         @php
