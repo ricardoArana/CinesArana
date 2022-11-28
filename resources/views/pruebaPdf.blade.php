@@ -16,8 +16,8 @@ $cine = '';
 $pelicula = '';
 $hora = '';
 @endphp
-<div style="margin-top: 3%; padding-top:1%;background-color: #FDF4E4;" class="mx-5">
-<p class="pb-10 text-4xl text-center">{{$user->name}}, estas son tus reservas: </p>
+<div style="margin-top: 2%; padding-top:1%; font-size: 0.5cm" class="mx-5">
+<p style="text-align: center; ">{{$user->name}}, estas son tus reservas: </p>
 </div>
 @foreach ($reservas as $reserva)
 @php
@@ -74,7 +74,7 @@ $hora = '';
 @if ($mostrar)
 
 
-    <div style="display: block; background-color:#FDF4E4" id="mostrarReserva" class="pt-3 mb-3 mx-5">
+    <div style="border solid 1px; display: block; border-color:black" id="mostrarReserva" class="pt-3 mb-3 mx-5">
         <div class="flex justify-between mt-20 pb-12 mb-10">
             <div class="h-96 ml-40">
             </div>
@@ -92,8 +92,10 @@ $hora = '';
                             <span style="margin-right: 2%"> Fila: {{floor($asiento/16)+1}}</span> Asiento: {{$asiento%16+1}}<br>
                         @endforeach
                     </p>
-                    -------------------------------------------------------------------------------------
-                @endif
+                    <p style="text-align: center; margin: 2px 0px 2px 0px">
+                        -------------------------------------------------------------------------------------
+                    </p>
+                        @endif
 
 
             </div>

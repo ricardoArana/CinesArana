@@ -1,8 +1,8 @@
 <x-guest-layout>
 
     <div class="w-full h-16"></div>
-    <div class="text-3xl text-center pt-10 pb-10 bg-[#FDF4E4]">
-        <p class="mb-5">Comprar entradas:</p>
+    <div class="text-3xl text-center pt-10 pb-10 bg-black text-white">
+        <p class="mb-5 text-white">Comprar entradas:</p>
         {{-- Obtener el nombre y la localidad del cine --}}
         <p class="mb-5 pb-5 text-2xl"><b>{{ $proyeccion->cine->nombre }}</b> en
             <b>{{ $proyeccion->cine->localidad->nombre }} ({{ $proyeccion->hora_inicio }})</b>
@@ -20,7 +20,7 @@
 
             </div>
         </div>
-        <div class="mt-16">
+        <div class="mt-16 pt-16 bg-white text-black">
             <div class="mb-10">
             <label class="container" for="blanco">
                 <input type="checkbox" value="blanco" name="blanco"
@@ -46,7 +46,7 @@
                        <br>
                     @endif
                     <label class="container" for="{{ $i }}">
-                        <input type="checkbox" style="color:#1cc14e" value="{{ $i }}" name="{{ $i }}"
+                        <input type="checkbox" style="color:blue" value="{{ $i }}" name="{{ $i }}"
                             id="{{ $i }}">
                         <span class="checkmark"></span>
                     </label>
@@ -130,7 +130,7 @@
                 </script>
                 <div>{{-- Boton de comprar --}}
                     <input id="comprar" onclick="mostrar()" type="submit" value="Comprar"
-                        class="bg-[#1cc14e] hover:bg-black text-white font-bold py-1 px-2 rounded-full my-5">
+                        class="bg-[#000c92] hover:bg-black text-white font-bold py-1 px-2 rounded-full my-5">
                 </div>
             </form>
             <div id="asientosSelec" class="mt-10"></div>
@@ -146,7 +146,7 @@
                     <input hidden type="text" value="{{ $proyeccion->sala }}" name="sala">
                     <input hidden type="text" value="{{ $proyeccion->hora_inicio }}" name="hora_inicio">
                     <input id="pagar" value="Pagar" style="display: none" type="submit"
-                        class="bg-[#1cc14e] hover:bg-black text-white font-bold py-1 px-2 rounded-full my-5">
+                        class="bg-[#000c92] hover:bg-black text-white font-bold py-1 px-2 rounded-full my-5">
                 </form>
             </div>
         </div>
