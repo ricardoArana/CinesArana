@@ -137,10 +137,16 @@
             <div id="sitioSelec" class="mt-2 text-xl"></div>
             <div id="precio" class="mt-10 "></div>
             <div class="flex justify-center">
-                <form class="py-4" action="{{ route('reservar') }}" method="POST">
-                    @method('POST')
+
+
+                <form class="py-4" action="{{ route('pagar') }}" method="get">
+                    @method('get')
                     @csrf
-                    <input hidden type="text" value="" id="asientosPOST" name="asientos">
+                    <input hidden type="text" value="" id="total" name="total">
+                    <script>
+                        $total = asientos.length * 7;
+                        document.getElementById("total").value = $total;
+                    </script>
                     <input hidden type="text" value="{{ $proyeccion->pelicula->id }}" name="pel_id">
                     <input hidden type="text" value="{{ $proyeccion->cine->id }}" name="cine_id">
                     <input hidden type="text" value="{{ $proyeccion->sala }}" name="sala">

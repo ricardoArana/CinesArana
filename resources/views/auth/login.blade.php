@@ -52,6 +52,6 @@
                 </x-button>
             </div>
         </form>
-        <p class="mt-8 text-center">¿No tienes una cuenta creada? <a href="{{ route('register') }}"> Regístrate</a></p>
+        <p class="mt-8 text-center">¿No tienes una cuenta creada? <a class="hover:text-[#2635da]" href="{{ route('register') }}"> Regístrate</a></p>
     </x-auth-card>
 </x-guest-layout>

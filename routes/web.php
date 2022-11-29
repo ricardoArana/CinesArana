@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\CineController;
+use App\Http\Controllers\StripeController;
 use App\Http\Controllers\PeliculaController;
 use App\Models\Cine;
 use Barryvdh\DomPDF\PDF;
@@ -17,6 +18,10 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
+
+Route::get('/stripe-payment', [StripeController::class, 'handleGet'])->name('pagar');
+Route::post('/stripe-payment', [StripeController::class, 'handlePost'])->name('stripe.payment');
+
 Route::get('/', [CineController::class, 'notuser'])
 ->name('notuser');
 
