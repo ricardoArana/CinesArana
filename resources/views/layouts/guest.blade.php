@@ -24,6 +24,9 @@
             display: block;
         }
     </style>
+
+    {{-- Recaptcha --}}
+    <script src="https://www.google.com/recaptcha/api.js" async defer></script>
 </head>
 
 <body style="background-color: black; font-family: rockwell">

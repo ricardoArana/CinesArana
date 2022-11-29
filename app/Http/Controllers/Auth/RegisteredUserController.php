@@ -6,11 +6,11 @@ use App\Http\Controllers\Controller;
 use App\Models\User;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Auth\Events\Registered;
+use Illuminate\Contracts\Session\Session;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\Rules;
-
 class RegisteredUserController extends Controller
 {
     /**
@@ -37,6 +37,18 @@ class RegisteredUserController extends Controller
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'password' => ['required', 'confirmed', Rules\Password::defaults()],
+            'g-recaptcha-response' => function ($attribute, $value, $fail) {
+                $secretKey = config('services.recaptcha.secret');
+                $response = $value;
+                $userIP = $_SERVER['REMOTE_ADDR'];
+                $url = "https://www.google.com/recaptcha/api/siteverify?secret=$secretKey&response=$response&remoteip=$userIP";
+                $response = \file_get_contents($url);
+                $response = json_decode($response);
+                if (!$response->success) {
+
+                    $fail('Completa el campo reCaptcha');
+                }
+            },
         ]);
 
         $user = User::create([
