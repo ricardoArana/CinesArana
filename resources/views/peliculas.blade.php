@@ -37,7 +37,7 @@
         }
         </style>
         <div class="w-full h-16"></div>
-        <div style="background-color: black;" class="text-white p-0 carousel pt-5 rounded relative overflow-hidden shadow-xl border-2 border-white bg-white">
+        <div class="bg-black text-white p-0 carousel pt-5 rounded relative overflow-hidden shadow-xl border-2 border-white">
             <p class="text-6xl text-center">Películas</p>
             <div class="mb-0 pb-0">
               <!--Slide 1-->
@@ -87,11 +87,11 @@
     <div class=" h-auto bg-black text-white mx-12 mt-5 pt-5">
 
 @foreach ($peliculas as $pelicula)
-    <div class="flex justify-between mt-20 pb-12 mb-10">
-        <div class="h-96 ml-40">
-            <img class="h-96 w-full border-2 border-white" src="{{ URL($pelicula->url) }}" alt="imagen de la pelicula">
+    <div class="lg:flex lg:justify-between mt-20 pb-12 mb-10">
+        <div class="h-96 lg:ml-40 mb-5">
+            <img class="h-96 w-auto mx-auto border-2 border-white" src="{{ URL($pelicula->url) }}" alt="imagen de la pelicula">
         </div>
-        <div class="h-96 w-1/2 mr-44 ml-16 text-xl text-left">
+        <div class="h-auto lg:w-1/2 lg:mr-44 ml-16 text-xl text-left">
             <p class="text-3xl pb-3"><b>{{$pelicula->titulo}}</b></p>
             {{$pelicula->sinopsis}}
 

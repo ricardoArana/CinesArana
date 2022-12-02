@@ -5,8 +5,18 @@
         }
 
         .faq-heading {
-            border-bottom: #777;
+            margin-left: 20%;
+            margin-right: 20%;
+            opacity: 0.95;
+            background-color: white;
+            border-bottom: black;
             padding: 20px 60px;
+        }
+
+        .faq-heading:hover {
+            opacity: 1
+            ;
+
         }
 
         .faq-container {
@@ -23,8 +33,10 @@
 
         /* Style the buttons that are used to open and close the faq-page body */
         .faq-page {
-            /* background-color: #eee; */
-            color: #444;
+            box-shadow: #000c92 2px 1px 3px 1px;
+            background-color: white;
+            opacity: 0.9;
+            color: black;
             cursor: pointer;
             padding: 30px 20px;
             width: 60%;
@@ -45,15 +57,19 @@
         /* Add a background color to the button if it is clicked on (add the .active class with JS), and when you move the mouse over it (hover) */
         .active,
         .faq-page:hover {
-            background-color: #FDF4E4;
+            background-color: white;
+            opacity: 1;
         }
 
         /* Style the faq-page panel. Note: hidden by default */
         .faq-body {
             padding: 0 18px;
-            background-color: #FDF4E4;
+            color: white;
+            background-color: black;
             display: none;
             overflow: hidden;
+            border: #000c92 solid 3px;
+
         }
 
         .faq-page:after {
@@ -96,7 +112,7 @@
         select:hover,
         textarea:hover {
             outline: none;
-            box-shadow: 0 0 5px 0 #FDF4E4;
+            box-shadow: 0 0 5px 0 white;
         }
 
         input {
@@ -122,13 +138,13 @@
 
         .item:hover p,
         .item:hover i {
-            color: #1cc14e;
+            color: white;
         }
 
         input:hover,
         select:hover,
         textarea:hover {
-            box-shadow: 0 0 5px 0 #1cc14e;
+            box-shadow: 0 0 10px 0 #000c92;
         }
 
         .status:hover input {
@@ -136,7 +152,7 @@
         }
 
         .status label:hover input {
-            box-shadow: 0 0 5px 0 #FDF4E4;
+            box-shadow: 0 5px 0 #000c92;
         }
 
         .status-item input,
@@ -184,19 +200,23 @@
         -webkit-border-radius: 5px;
         -moz-border-radius: 5px;
         border-radius: 5px;
-        background-color: #1cc14e;
+        background-color: white;
         font-size: 16px;
-        color: #fff;
+        color: black;
         cursor: pointer;
-        background-color"
     }
       #boton-enviar:hover{
-      background-color: #059530;
+
+      background-color: black;
+      color: white;
+      box-shadow: 0 0 5px 0 white;
       }
       #form-contacto{
         width: 70%;
     padding: 20px;
-    background: #FDF4E4;
+    background: black;
+    color: white;
+    opacity: 0.95;
     box-shadow: 0 2px 5px #ccc;
       }
         }

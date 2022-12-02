@@ -55,7 +55,7 @@ dd($reservas->count())
     $hora = '';
 @endphp
 <div style="margin-top: 3%; padding-top:1%;background-color: black;" class="text-white mx-5">
-<p class="pb-10 text-4xl text-center">Estas son tus reservas: </p>
+<p class="pb-10 mt-5 text-4xl text-center">Estas son tus reservas: </p>
 </div>
 @foreach ($reservas as $reserva)
     @php
@@ -119,11 +119,11 @@ dd($reservas->count())
 
 
         <div style="display: block; background-color:black" id="mostrarReserva" class="text-white pt-3 mb-3 mx-5">
-            <div class="flex justify-between mt-20 pb-12 mb-10">
-                <div class="h-96 ml-40">
-                    <img style="border: 5px solid white;" class="h-96 w-full" src="{{ URL($reserva->pelicula->url) }}" alt="imagen de la pelicula">
+            <div class="lg:flex lg:justify-between mt-20 pb-12 mx-auto mb-10">
+                <div class="h-auto w-[60%] xl:w-[25%] lg:ml-[10%] xl:ml-40 ml-[10%]">
+                    <img style="border: 5px solid white;" class="h-auto w-[100%]" src="{{ URL($reserva->pelicula->url) }}" alt="imagen de la pelicula">
                 </div>
-                <div class="h-96 w-1/2 mr-44 ml-16 text-xl text-left">
+                <div class="h-96 lg:w-1/2 mt-10  lg:mr-44 ml-[10%] text-xl text-left">
                     <p class="text-3xl pb-3"><b>{{ $reserva->cine->nombre }}</b>
                         ({{ $reserva->cine->localidad->nombre }})
                     </p>

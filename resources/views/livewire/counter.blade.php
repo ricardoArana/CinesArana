@@ -1,9 +1,9 @@
 <div>
-    <div style="background-color: black" class="text-2xl flex h-36 mx-12 border-white border-2">
-        <div class="w-full  ml-28 flex justify-center">
+    <div class="bg-black text-2xl xl:flex justify-center items-center h-auto mx-12 border-white border-2">
+        <div class="w-full flex justify-center">
             <!-- Div donde se pregunta la ciudad-->
-            <p class="text-white mt-10">Ciudad:</p>
-            <div class="mt-8 w-full ">
+            <p class="text-white mt-10 md:block hidden">Ciudad:</p>
+            <div class="mt-8 xl:mb-8 w-auto mr-20 ">
                 <form action="">
                     @csrf
                     <select id="ciudad" wire:model="localidadLive"
@@ -16,17 +16,15 @@
             </div>
         </div>
 
-        <div class="w-full mr-28 flex justify-center align-middle">
+        <div class="w-full md:ml-4 ml-0 flex justify-center">
             <!-- Div donde se pregunta el cine-->
-            <p class="text-white mt-10">Cine:</p>
-            <div class="mt-8 w-1/2 ">
-                @if (!empty(Auth::user()))
-
+            <p class="text-white mt-10 md:block hidden">Cine:</p>
+            <div class="my-8 w-auto mr-20 ">
                     <div style="margin-left: 22rem; margin-top:8px;"
                         title='Desde "mi perfil" puedes añadir tu cine favorito para que se muestre al iniciar nuestra web'
                         class="absolute">
                         @if (Auth::user()->cine_fav == '' || Auth::user()->cine_fav == 'nada')
-                            <span id="starBlack" class="fa fa-star" checked="true" style="color: black"></span>
+                            <span id="starBlack" class="fa fa-star" checked="true" style="color: red;"></span>
                     </div>
                 @else
                     @php
@@ -36,7 +34,7 @@
                     <span id="starOrange" class="fa fa-star" checked="false" style="color:orange"></span>
             </div>
             @endif
-            @endif
+
             <select id="cineSelect" wire:model="cineLive"
                 class="text-black block appearance-none ml-10 w-72 text-2xl  rounded shadow leading-tight focus:outline-none focus:shadow-outline">
                 <option selected="true" value="cine1">Seleccione el cine </option>
@@ -64,20 +62,20 @@
             Lo sentimos, parece que no hay películas disponibles para este cine</p>
     @endif
     @foreach ($peliculas as $pelicula)
-        <div class="flex justify-between mt-10 pb-12 mb-10 h-auto">
-            <div class="h-96 ml-40">
-                <img style="border: 5px solid white;" class="h-[28rem] w-full" src="{{ URL($pelicula->url) }}"
+        <div class="lg:flex lg:justify-between mt-10 pb-12 mb-10 h-auto">
+            <div class="w-96 h-auto mx-auto lg:ml-40">
+                <img style="border: 5px solid white;" class="h-auto w-full" src="{{ URL($pelicula->url) }}"
                     alt="imagen de la pelicula">
             </div>
 
-            <div class="h-96 w-1/2 mr-44 ml-16 mt-10 text-xl text-left">
+            <div class="h-96 xl:w-1/2 w-1/3 mr-44 mx-auto lg:ml-16 mt-10 text-xl text-left">
                 <p class="text-3xl pb-3"><b>{{ $pelicula->titulo }}</b></p>
                 {{ $pelicula->sinopsis }}
                 @foreach ($pelicula->proyecciones as $proyeccion)
                     @if ($proyeccion->cine->nombre == $cineSelect->nombre)
-                        <p><button class="bg-[#000c92] hover:bg-white text-white hover:text-black font-bold py-1 px-2 rounded-xl my-3"><a
+                        <button class="bg-[#000c92] hover:bg-white text-white hover:text-black font-bold py-1 px-2 rounded-xl my-3"><a
                                     href="{{ route('reserva', [$proyeccion]) }}">{{ $proyeccion->hora_inicio }}</a></button>
-                        </p>
+
                     @endif
                 @endforeach
 
@@ -103,7 +101,7 @@
 
        if (spanOrange != null) {
         if (cineFav != cineOption) {
-            spanOrange.style = "color:black"
+            spanOrange.style = "color:grey"
         }
         else{
             spanOrange.style = "color:orange"

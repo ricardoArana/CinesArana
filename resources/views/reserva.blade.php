@@ -110,6 +110,7 @@
                         } else {
                             document.getElementById("comprar").style.display = "none";
                             document.getElementById("pagar").style.display = "block";
+                            document.getElementById("pagarPrueba").style.display = "block";
                             filas = [];
                             columnas = [];
                             for (let i = 0; i < asientos.length; i++) {
@@ -153,6 +154,18 @@
                     <input hidden type="text" value="{{ $proyeccion->hora_inicio }}" name="hora_inicio">
                     <input id="pagar" value="Pagar" style="display: none" type="submit"
                         class="bg-[#000c92] hover:bg-black text-white font-bold py-1 px-2 rounded-full my-5">
+                </form>
+
+                <form class="py-4" action="{{ route('reservar') }}" method="post">
+                    @method('POST')
+                    @csrf
+                    <input hidden type="text" value="" id="asientosPOST" name="asientos">
+                    <input hidden type="text" value="{{ $proyeccion->pelicula->id }}" name="pel_id">
+                    <input hidden type="text" value="{{ $proyeccion->cine->id }}" name="cine_id">
+                    <input hidden type="text" value="{{ $proyeccion->sala }}" name="sala">
+                    <input hidden type="text" value="{{ $proyeccion->hora_inicio }}" name="hora_inicio">
+                    <input id="pagarPrueba" value="Reserva gratis" style="display: none" type="submit"
+                        class="bg-[#000c92] text-xl mx-5 hover:bg-black text-white font-bold py-1 px-2 rounded-full my-5">
                 </form>
             </div>
         </div>
