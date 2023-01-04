@@ -7,7 +7,7 @@
         .faq-heading {
             margin-left: 20%;
             margin-right: 20%;
-            opacity: 0.95;
+            opacity: 0.96;
             background-color: white;
             border-bottom: black;
             padding: 20px 60px;
@@ -35,7 +35,7 @@
         .faq-page {
             box-shadow: #000c92 2px 1px 3px 1px;
             background-color: white;
-            opacity: 0.9;
+            opacity: 0.96;
             color: black;
             cursor: pointer;
             padding: 30px 20px;
@@ -216,7 +216,7 @@
     padding: 20px;
     background: black;
     color: white;
-    opacity: 0.95;
+    opacity: 0.96;
     box-shadow: 0 2px 5px #ccc;
       }
         }

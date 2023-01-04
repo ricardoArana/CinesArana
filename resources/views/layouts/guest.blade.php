@@ -114,15 +114,15 @@
                 <li><a class="menuItem" href="{{ route('peliculas') }}">Películas</a></li>
                 <li><a class="menuItem" href="{{ route('cines') }}" style="margin-bottom:0%;">Cines</a></li>
                 @if (Auth::user())
-                <li>
-                    <div class="dropdown inline-block relative ml-[4rem]">
+                <li class="z-10">
+                    <div class="dropdown inline-block relative ml-[4rem] z-10">
                         <button class="hover:animate-waving font-semibold rounded inline-flex items-center">
                             <span class="mr-1 text-3xl h-auto mt-[2rem]">{{ Auth::user()->name }}</span>
                             <svg class="fill-current h-4 w-4 mt-[2rem]" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
                                 <path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z" />
                             </svg>
                         </button>
-                        <ul class="border-white border-b-2 dropdown-menu absolute hidden pt-2 text-xl w-44">
+                        <ul class="border-white border-b-2 dropdown-menu absolute hidden pt-2 text-xl w-44 z-10">
                                     <li class=""><a
                                         class="bg-black hover:bg-gray-400 py-2 px-4 block whitespace-no-wrap"
                                         href="{{ route('miPerfil') }}">Mi perfil</a></li>

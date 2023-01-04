@@ -1,7 +1,7 @@
 <x-guest-layout>
 
     <div class="w-full h-16"></div>
-    <div class="text-3xl text-center pt-10 pb-10 bg-black text-white">
+    <div class="text-3xl text-center pt-10 pb-10 bg-[#191919] text-white">
         <p class="mb-5 text-white">Comprar entradas:</p>
         {{-- Obtener el nombre y la localidad del cine --}}
         <p class="mb-5 pb-5 text-2xl"><b>{{ $proyeccion->cine->nombre }}</b> en
@@ -9,7 +9,7 @@
         </p>
         <div class="flex justify-between mt-20 pb-12 mb-10">
             <div class="h-96 ml-40">
-                <img style="border: 5px solid #95F0B0;" class="h-96 w-full" src="{{ URL($proyeccion->pelicula->url) }}" alt="imagen de la pelicula">
+                <img style="border: 5px solid white;" class="h-96 w-full" src="{{ URL($proyeccion->pelicula->url) }}" alt="imagen de la pelicula">
             </div>
 
             <div class="h-96 w-1/2 mr-44 ml-16 text-xl text-left">
@@ -20,7 +20,7 @@
 
             </div>
         </div>
-        <div class="mt-16 pt-16 bg-white text-black">
+        <div class="mt-16 pt-16 bg-[#E0E0E0] text-black">
             <div class="mb-10">
             <label class="container" for="blanco">
                 <input type="checkbox" value="blanco" name="blanco"
@@ -52,7 +52,7 @@
                     </label>
                 @endfor
                 <div class="flex justify-center">
-                    <div style="width: 370px" class="bg-white border-2 border-black mt-10 mb-5 h-8 px-10 text-xl">
+                    <div style="width: 370px" class="bg-[white] border-2 border-black mt-10 mb-5 h-8 px-10 text-xl">
                        <p> Pantalla</p></div>
                 </div>
                 @php
@@ -125,8 +125,10 @@
 
                             }
                             document.getElementById("precio").innerHTML = `Precio: ${asientos.length * 7}&euro;`
+                            document.getElementById("precio").value = asientos.length * 7
                         }
                         document.getElementById("asientosPOST").value = asientos
+                        document.getElementById("asientosPruebaPOST").value = asientos
                     }
                 </script>
                 <div>{{-- Boton de comprar --}}
@@ -140,14 +142,10 @@
             <div class="flex justify-center">
 
 
-                <form class="py-4" action="{{ route('pagar') }}" method="get">
+                <form class="py-4" action="{{ route('pagar', [$proyeccion]) }}" method="get">
                     @method('get')
                     @csrf
-                    <input hidden type="text" value="" id="total" name="total">
-                    <script>
-                        $total = asientos.length * 7;
-                        document.getElementById("total").value = $total;
-                    </script>
+                    <input hidden type="text" value="" id="asientosPOST" name="asientos">
                     <input hidden type="text" value="{{ $proyeccion->pelicula->id }}" name="pel_id">
                     <input hidden type="text" value="{{ $proyeccion->cine->id }}" name="cine_id">
                     <input hidden type="text" value="{{ $proyeccion->sala }}" name="sala">
@@ -159,7 +157,7 @@
                 <form class="py-4" action="{{ route('reservar') }}" method="post">
                     @method('POST')
                     @csrf
-                    <input hidden type="text" value="" id="asientosPOST" name="asientos">
+                    <input hidden type="text" value="" id="asientosPruebaPOST" name="asientos">
                     <input hidden type="text" value="{{ $proyeccion->pelicula->id }}" name="pel_id">
                     <input hidden type="text" value="{{ $proyeccion->cine->id }}" name="cine_id">
                     <input hidden type="text" value="{{ $proyeccion->sala }}" name="sala">

@@ -37,7 +37,7 @@
         }
         </style>
         <div class="w-full h-16"></div>
-        <div class="bg-black text-white p-0 carousel pt-5 rounded relative overflow-hidden shadow-xl border-2 border-white">
+        <div class="bg-black text-white p-0 carousel pt-5 rounded relative overflow-hidden shadow-xl border-2 border-white z-0">
             <p class="text-6xl text-center">Películas</p>
             <div class="mb-0 pb-0">
               <!--Slide 1-->

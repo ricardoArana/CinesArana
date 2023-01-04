@@ -12,14 +12,14 @@
     }
 </style>
     <div class="h-16"></div>
-    <div style="background-color: black;" class="text-3xl text-white text-center pt-5 pb-3 mb-3 mx-5">
+    <div style="background-color: #373737;" class="text-3xl text-white text-center opacity-[98%] pt-5 pb-3 mb-3 mx-5" title="EL cine que selecciones te aparecerá por defecto en la página principal. Puedes cambiarlo cuando quieras.">
         <div id="cineFavorito" class="mt-3 mb-10 text-xl">
             @if ($user->cine_fav == '' || $user->cine_fav == 'nada')
         <p class="mb-6"><b>{{$user->name}}</b>, no tienes <b>ningún cine </b> como favorito, puedes seleccionar uno aquí:</p>
 
         @else
 
-        <p class="mb-6"><b>{{$user->name}}</b>, tu cine favorito es <b>{{$user->cine_fav}}</b>. Puedes cambiarlo aquí:</p>
+        <p class="mb-6"><b>{{$user->name}}</b>, tu cine favorito es <b>{{$user->cine_fav}}</b>. Puedes cambiarlo aquí: <img src="{{ URL('img/interrogacion.png') }}" alt="icono de interrogacion" class="inline ml-10 w-5 h-5"></p>
         @endif
 
         <form action="{{route('cambiarCineFav')}}" method="post">

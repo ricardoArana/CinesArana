@@ -1,5 +1,5 @@
 <div>
-    <div class="bg-black text-2xl xl:flex justify-center items-center h-auto mx-12 border-white border-2">
+    <div class="bg-[#191919] text-2xl xl:flex justify-center items-center h-auto mx-12 border-white border-2">
         <div class="w-full flex justify-center">
             <!-- Div donde se pregunta la ciudad-->
             <p class="text-white mt-10 md:block hidden">Ciudad:</p>
@@ -48,7 +48,7 @@
     </form>
 </div>
 <div class="w-max h-16"></div>
-<div style="background-color: black" class="opacity-95 text-white mx-12 h-auto border-black border-2">
+<div style="background-color: black" class="opacity-[97%] text-white h-auto border-black border-2">
     <p class="text-center text-7xl mb-10 pt-5">Cartelera</p>
     <p class="text-center text-2xl">
         @php
@@ -63,21 +63,22 @@
     @endif
     @foreach ($peliculas as $pelicula)
         <div class="lg:flex lg:justify-between mt-10 pb-12 mb-10 h-auto">
-            <div class="w-96 h-auto mx-auto lg:ml-40">
+            <div class="w-96 h-auto mx-auto lg:ml-40 opacity-100">
                 <img style="border: 5px solid white;" class="h-auto w-full" src="{{ URL($pelicula->url) }}"
                     alt="imagen de la pelicula">
             </div>
 
-            <div class="h-96 xl:w-1/2 w-1/3 mr-44 mx-auto lg:ml-16 mt-10 text-xl text-left">
+            <div class="h-auto w-1/2 ml-[15%] mr-[5%] lg:mr-[5%] lg:ml-[2%]  md:mr-44 md:ml-[25%] mt-10 text-xl text-left">
                 <p class="text-3xl pb-3"><b>{{ $pelicula->titulo }}</b></p>
                 {{ $pelicula->sinopsis }}
+                <p class="mt-5">
                 @foreach ($pelicula->proyecciones as $proyeccion)
                     @if ($proyeccion->cine->nombre == $cineSelect->nombre)
-                        <button class="bg-[#000c92] hover:bg-white text-white hover:text-black font-bold py-1 px-2 rounded-xl my-3"><a
+                        <button class="bg-[#000c92] hover:bg-white text-white hover:text-black font-bold py-1 px-2 rounded-xl my-3 mr-5"><a
                                     href="{{ route('reserva', [$proyeccion]) }}">{{ $proyeccion->hora_inicio }}</a></button>
-
-                    @endif
-                @endforeach
+                                    @endif
+                                    @endforeach
+                                </p>
 
             </div>
         </div>

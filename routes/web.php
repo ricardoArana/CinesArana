@@ -1,9 +1,11 @@
 <?php
 
 use App\Http\Controllers\CineController;
+use App\Http\Controllers\MailController;
 use App\Http\Controllers\StripeController;
 use App\Http\Controllers\PeliculaController;
 use App\Models\Cine;
+use Mail;
 use Barryvdh\DomPDF\PDF;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
@@ -19,7 +21,19 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/stripe-payment', [StripeController::class, 'handleGet'])->name('pagar');
+Route::get('send-mail', function () {
+
+    $details = [
+        'title' => 'Mail from ItSolutionStuff.com',
+        'body' => 'This is for testing email using smtp'
+    ];
+
+    \Mail::to('your_receiver_email@gmail.com')->send(new \App\Mail\DemoMail($details));
+
+    dd("Email is Sent.");
+});
+
+Route::get('/stripe-payment/{proyeccion}', [StripeController::class, 'handleGet'])->name('pagar');
 Route::post('/stripe-payment', [StripeController::class, 'handlePost'])->name('stripe.payment');
 
 Route::get('/', [CineController::class, 'notuser'])
