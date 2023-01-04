@@ -24,14 +24,14 @@
                         title='Desde "mi perfil" puedes añadir tu cine favorito para que se muestre al iniciar nuestra web'
                         class="absolute">
                         @if (Auth::user()->cine_fav == '' || Auth::user()->cine_fav == 'nada')
-                            <span id="starBlack" class="fa fa-star" checked="true" style="color: red;"></span>
+                            <span id="starBlack" class="fa fa-star" checked="true" style="color: grey;"></span> <img src="{{ URL('img/interrogacion.png') }}" alt="icono de interrogacion" class="inline ml-10 w-5 h-5">
                     </div>
                 @else
                     @php
                         $cineLive = Auth::user()->cine_fav;
 
                     @endphp
-                    <span id="starOrange" class="fa fa-star" checked="false" style="color:orange"></span>
+                    <span id="starOrange" class="fa fa-star" checked="false" style="color:orange"></span> <img src="{{ URL('img/interrogacion.png') }}" alt="icono de interrogacion" class="inline ml-10 w-5 h-5 mb-1">
             </div>
             @endif
 

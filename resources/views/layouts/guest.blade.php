@@ -116,7 +116,7 @@
                 @if (Auth::user())
                 <li class="z-10">
                     <div class="dropdown inline-block relative ml-[4rem] z-10">
-                        <button class="hover:animate-waving font-semibold rounded inline-flex items-center">
+                        <button class="hover:animate-waving font-semibold rounded inline-flex items-center z-10">
                             <span class="mr-1 text-3xl h-auto mt-[2rem]">{{ Auth::user()->name }}</span>
                             <svg class="fill-current h-4 w-4 mt-[2rem]" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
                                 <path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z" />
@@ -124,15 +124,15 @@
                         </button>
                         <ul class="border-white border-b-2 dropdown-menu absolute hidden pt-2 text-xl w-44 z-10">
                                     <li class=""><a
-                                        class="bg-black hover:bg-gray-400 py-2 px-4 block whitespace-no-wrap"
+                                        class="bg-black z-10 hover:bg-gray-400 py-2 px-4 block whitespace-no-wrap"
                                         href="{{ route('miPerfil') }}">Mi perfil</a></li>
                             <li class=""><a
-                                    class="bg-black hover:bg-gray-400 py-2 px-4 block whitespace-no-wrap"
+                                    class="bg-black z-10 hover:bg-gray-400 py-2 px-4 block whitespace-no-wrap"
                                     href="{{ route('preguntas') }}">Necesito ayuda</a></li>
                             <li class="">
                                 <form action="logout" method="post">
                                     @csrf
-                                    <input type="submit" value="Cerrar Sesión" class="text-left w-44 bg-black hover:bg-gray-400 py-2 px-4 block whitespace-no-wrap"/>
+                                    <input type="submit" value="Cerrar Sesión" class="text-left w-44 bg-black z-10 hover:bg-gray-400 py-2 px-4 block whitespace-no-wrap"/>
                                 </form>
                             </li>
                         </ul>
@@ -243,7 +243,7 @@
 
         <footer class="text-center bg-black text-white">
             <div class="container px-6 pt-6">
-              <div class="flex justify-center mb-6">
+              <div class="flex ml-[50%] mb-6">
                 <a href="#!" type="button" class="rounded-full border-2 border-white text-white leading-normal uppercase hover:bg-black hover:bg-opacity-5 focus:outline-none focus:ring-0 transition duration-150 ease-in-out w-9 h-9 m-1">
                   <svg aria-hidden="true"
                   focusable="false"
@@ -348,9 +348,9 @@
               </div>
             </div>
 
-            <div class="text-center p-4" style="background-color: rgba(0, 0, 0, 0.2);">
+            <div class="p-4 lg:ml-[5%] xl:ml-[0%] ml-[8%] bg-black">
               © 2022 Copyright:
-              <a class="text-whitehite" href="https://tailwind-elements.com/">Cines Arana</a>
+              <a class="text-whitehite" href="#">Cines Arana</a>
             </div>
           </footer>
 

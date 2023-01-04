@@ -1,7 +1,7 @@
 <x-guest-layout>
 
     <div class="w-full h-16"></div>
-    <div class="text-3xl text-center pt-10 pb-10 bg-[#191919] text-white">
+    <div class="text-3xl text-center pt-10 pb-10 bg-[#151515] text-white">
         <p class="mb-5 text-white">Comprar entradas:</p>
         {{-- Obtener el nombre y la localidad del cine --}}
         <p class="mb-5 pb-5 text-2xl"><b>{{ $proyeccion->cine->nombre }}</b> en
@@ -20,7 +20,7 @@
 
             </div>
         </div>
-        <div class="mt-16 pt-16 bg-[#E0E0E0] text-black">
+        <div class="mt-16 pt-16 bg-[#eeeeee] text-black">
             <div class="mb-10">
             <label class="container" for="blanco">
                 <input type="checkbox" value="blanco" name="blanco"
