@@ -36,14 +36,14 @@
             se muestran el resto de peliculas automáticamente */
         }
         </style>
-        <div class="w-full h-16"></div>
-        <div class="bg-black text-white p-0 carousel pt-5 rounded relative overflow-hidden shadow-xl border-2 border-white z-0">
+        <div class="w-full h-28"></div>
+        <div class="bg-black opacity-95 text-white p-0 carousel pt-5 rounded relative overflow-hidden shadow-xl border-2 border-white z-0">
             <p class="text-6xl text-center">Películas</p>
             <div class="mb-0 pb-0">
               <!--Slide 1-->
               <input class="carousel-open hidden" type="radio" id="carousel-1" name="carousel" aria-hidden="true" hidden=""
                 checked="checked">
-              <div class="carousel-item mb-14 mt-8 absolute opacity-0 bg-center bg-no-repeat bg-contain" style="height:500px; background-image: url({{ URL('img/spiderman3.png') }})">
+              <div class="carousel-item mb-14 mt-8 absolute opacity-0 bg-center bg-no-repeat bg-contain" style="height:500px; background-image: url({{ URL('img/avatar.jpg') }})">
 
               </div>
 
@@ -51,7 +51,7 @@
 
               <!--Slide 2-->
               <input class="carousel-open hidden" type="radio" id="carousel-2" name="carousel" aria-hidden="true" hidden="">
-              <div class="carousel-item mb-14 mt-8 absolute opacity-0 bg-center bg-contain bg-no-repeat" style="height:500px; background-image: url({{ URL('img/cars.png') }})">
+              <div class="carousel-item mb-14 mt-8 absolute opacity-0 bg-center bg-contain bg-no-repeat" style="height:500px; background-image: url({{ URL('img/reza.jpg') }})">
               </div>
 
               <label for="carousel-3"
@@ -60,7 +60,7 @@
 
               <!--Slide 3-->
               <input class="carousel-open hidden" type="radio" id="carousel-3" name="carousel" aria-hidden="true" hidden="">
-              <div class="carousel-item mb-14 mt-8 absolute opacity-0 bg-center bg-contain bg-no-repeat" style="height:500px; background-image: url({{ URL('img/spiderman3.png') }})">
+              <div class="carousel-item mb-14 mt-8 absolute opacity-0 bg-center bg-contain bg-no-repeat" style="height:500px; background-image: url({{ URL('img/vecino.jpg') }})">
               </div>
 
 
@@ -84,14 +84,14 @@
 
             </div>
           </div>
-    <div class=" h-auto bg-black text-white mx-12 mt-5 pt-5">
+    <div class=" h-auto bg-black text-white xl:mx-12 mt-5 pt-5">
 
 @foreach ($peliculas as $pelicula)
     <div class="lg:flex lg:justify-between mt-20 pb-12 mb-10">
-        <div class="h-96 lg:ml-40 mb-5">
-            <img class="h-96 w-auto mx-auto border-2 border-white" src="{{ URL($pelicula->url) }}" alt="imagen de la pelicula">
+        <div class="h-auto lg:ml-40 mb-20">
+            <img class="h-auto w-96 mx-auto border-2 border-white" src="{{ URL($pelicula->url) }}" alt="imagen de la pelicula">
         </div>
-        <div class="h-auto lg:w-1/2 lg:mr-44 ml-16 text-xl text-left">
+        <div class="h-auto lg:w-1/2 lg:mr-44 lg:mt-7 ml-16 text-xl text-left">
             <p class="text-3xl pb-3"><b>{{$pelicula->titulo}}</b></p>
             {{$pelicula->sinopsis}}
 

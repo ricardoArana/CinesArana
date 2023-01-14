@@ -82,16 +82,20 @@ $hora = '';
                 <p class="text-3xl pb-3">Tiene {{ sizeof($asientos) }} reservas en <b>{{ $reserva->cine->nombre }}</b>
                     ({{ $reserva->cine->localidad->nombre }})
                 </p>
+                <p class="text-xl"><b>{{$reserva->pelicula->titulo}}</b></p>
                 <p class="text-2xl"> </p>
                 <p class="text-xl my-4"> Hora de inicio: {{ $reserva->hora_inicio }} </p>
+                <p>Sala {{ $reserva->sala }}</p>
                 @if ($mostrar)
-
+                <div>
                     <p> <b> Asientos: </b><br>
 
                         @foreach ($asientos as $asiento)
                             <span style="margin-right: 2%"> Fila: {{floor($asiento/16)+1}}</span> Asiento: {{$asiento%16+1}}<br>
                         @endforeach
                     </p>
+                </div>
+
                     <p style="text-align: center; margin: 2px 0px 2px 0px">
                         -------------------------------------------------------------------------------------
                     </p>

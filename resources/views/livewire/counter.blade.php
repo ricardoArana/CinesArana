@@ -37,7 +37,7 @@
 
             <select id="cineSelect" wire:model="cineLive"
                 class="text-black block appearance-none ml-10 w-72 text-2xl  rounded shadow leading-tight focus:outline-none focus:shadow-outline">
-                <option selected="true" value="cine1">Seleccione el cine </option>
+                <option selected="true" value="Las Dunnas">Seleccione el cine </option>
                 {{-- <input type="text" hidden value="{{$cines->count()}}"> --}}
                 @foreach ($cines as $cine)
                 <option class="cinesOption" value="{{ $cine->nombre }}">{{ $cine->nombre }} </option>
@@ -50,7 +50,7 @@
 <div class="w-max h-16"></div>
 <div style="background-color: black" class="opacity-[97%] text-white h-auto border-black border-2">
     <p class="text-center text-7xl mb-10 pt-5">Cartelera</p>
-    <p class="text-center text-2xl">
+    <p class="text-center text-3xl">
         @php
             $fecha = date('d-m-Y', strtotime('+1 day', time()));
             $localidadMostrar = $cineSelect->localidad;

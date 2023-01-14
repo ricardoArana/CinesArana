@@ -4,6 +4,7 @@ namespace App\Http\Livewire;
 
 use App\Models\Cine;
 use App\Models\Localidad;
+use COM;
 use Illuminate\Support\Facades\Auth;
 use Livewire\Component;
 
@@ -18,7 +19,7 @@ class Counter extends Component
         if ($this->cont < 1) {
             if (Auth::user() && Auth::user()->cine_fav == 'nada' || Auth::user()->cine_fav == '') {
 
-                $this->cineLive = 'cine1';
+                $this->cineLive = Cine::first()->nombre;
             }
             else {
                 if(Auth::user()){

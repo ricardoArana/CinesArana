@@ -8,8 +8,8 @@ use Livewire\Component;
 
 class Notuser extends Component
 {
-    public $localidadLive = 'Sanlúcar de Bda';
-    public $cineLive = 'cine1';
+    public $localidadLive = 'Sanlúcar de Barrameda';
+    public $cineLive = 'Las Dunnas';
 
     public function render()
     {

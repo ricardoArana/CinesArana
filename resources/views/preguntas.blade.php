@@ -236,7 +236,7 @@
 
     <body>
         <main style="padding-top: 2%">
-            <h1 class="faq-heading text-2xl text-center">Preguntas Frecuentes</h1>
+            <h1 class="faq-heading text-3xl text-center"><b>Preguntas Frecuentes </b></h1>
             <section class="faq-container">
                 <div class="faq-one">
                     <!-- faq question -->
@@ -284,42 +284,15 @@
         </div>
         <div class="testbox" style="margin-top: 5%">
             <form id="form-contacto"
-                action="{{ route('send.email') }}" method="post">
+                action="" method="post">
                 @csrf
-                <h1>Formulario de contacto</h1>
-                <div class="item">
-                    <p>Nombre completo:</p>
-                    <div class="name-item">
-                        <input type="text" name="name" placeholder="Nombre" />
-                    </div>
-                </div>
-                <div class="item status">
-                    <p>Relación del contacto:</p>
-                    <div class="status-item">
-                        <label><input type="checkbox" name=""> <span>Entradas</span></label>
-                        <label><input type="checkbox" name=""> <span>Pago</span></label>
-                        <label><input type="checkbox" name=""> <span>Otro</span></label>
-                    </div>
-                </div>
-                <div class="item">
-                    <p>Asunto del email:</p>
-                    <input type="text" name="subject" placeholder="Asunto" />
-                    <p>Correo electrónico:</p>
-                    <input type="text" name="email" />
-                </div>
-                <div class="item">
-                    <p>Teléfono:</p>
-                    <input type="text" name="telefono" />
-                </div>
+                <h1 class="text-2xl ml-8 mb-10">¿Tienes alguna otra duda?</h1>
 
-                <div class="item">
-                    <p>Escribe tu mensaje:</p>
-                    <textarea name="content " rows="5"></textarea>
-                </div>
-                <div class="btn-block">
-                    <input id="boton-enviar" value="Enviar correo"
-                        type="submit" href="/">
-                </div>
+                <h1 class="text-xl ml-4">Puedes dejar un correo electrónico en cinesarana@soporte.com</h1>
+                <h1 class="text-xl ml-4">Prometemos responder en 1-2 días laborables.</h1>
+                <h1 class="text-xl ml-4 mt-14">También puedes contactarnos en nuestras redes sociales (al final de la página).</h1>
+
+
             </form>
         </div>
     </body>

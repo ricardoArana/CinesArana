@@ -22,7 +22,7 @@
             <div class="my-8 w-auto mr-20 ">
                 <select id="cineSelect" wire:model="cineLive"
                 class="text-black block appearance-none ml-10 w-72 text-2xl  rounded shadow leading-tight focus:outline-none focus:shadow-outline">
-                <option selected="true" value="cine1">Seleccione el cine </option>
+                <option selected="true" value="Las Dunnas">Seleccione el cine </option>
                 {{-- <input type="text" hidden value="{{$cines->count()}}"> --}}
                 @foreach ($cines as $cine)
                 <option class="cinesOption" value="{{ $cine->nombre }}">{{ $cine->nombre }} </option>

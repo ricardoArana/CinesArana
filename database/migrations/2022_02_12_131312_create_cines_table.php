@@ -16,11 +16,11 @@ class CreateCinesTable extends Migration
         Schema::create('cines', function (Blueprint $table) {
             $table->id();
             $table->string('nombre');
-            $table->string('descripcion');
+            $table->string('descripcion', 4000);
             $table->smallInteger('asientos');
             $table->foreignId('localidad_id')->constrained('localidads');
             $table->string('imagen');
-            $table->string('mapa');
+            $table->string('mapa', 4000);
             $table->timestamps();
         });
     }

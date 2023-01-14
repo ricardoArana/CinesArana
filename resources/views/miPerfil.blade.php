@@ -11,7 +11,7 @@
         background-color: #000000
     }
 </style>
-    <div class="h-16"></div>
+    <div class="h-28"></div>
     <div style="background-color: #373737;" class="text-3xl text-white text-center opacity-[98%] pt-5 pb-3 mb-3 mx-5" title="EL cine que selecciones te aparecerá por defecto en la página principal. Puedes cambiarlo cuando quieras.">
         <div id="cineFavorito" class="mt-3 mb-10 text-xl">
             @if ($user->cine_fav == '' || $user->cine_fav == 'nada')

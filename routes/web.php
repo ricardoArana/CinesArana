@@ -1,11 +1,9 @@
 <?php
 
 use App\Http\Controllers\CineController;
-use App\Http\Controllers\MailController;
 use App\Http\Controllers\StripeController;
 use App\Http\Controllers\PeliculaController;
 use App\Models\Cine;
-use Mail;
 use Barryvdh\DomPDF\PDF;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
@@ -21,7 +19,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('send-mail', function () {
+/* Route::get('send-mail', function () {
 
     $details = [
         'title' => 'Mail from ItSolutionStuff.com',
@@ -31,7 +29,7 @@ Route::get('send-mail', function () {
     \Mail::to('your_receiver_email@gmail.com')->send(new \App\Mail\DemoMail($details));
 
     dd("Email is Sent.");
-});
+}); */
 
 Route::get('/stripe-payment/{proyeccion}', [StripeController::class, 'handleGet'])->name('pagar');
 Route::post('/stripe-payment', [StripeController::class, 'handlePost'])->name('stripe.payment');
@@ -63,8 +61,7 @@ Route::get('/miPerfil', [CineController::class, 'miPerfil'])
 Route::post('/cambiarCineFav', [CineController::class, 'cambiarCineFav'])
 ->name('cambiarCineFav');
 
-Route::post('/email', [App\Http\Controllers\EmailController::class, 'sendEmail'])
-->name('send.email');
+
 
 Route::get('/pdf', function () {
     $pdf = app('dompdf.wrapper');

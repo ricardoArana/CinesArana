@@ -15,6 +15,11 @@ class StripeController extends Controller
 
     public function handleGet(Request $request, Proyeccion $proyeccion)
     {
+
+        if (empty(Auth::user())) {
+            return redirect('/')->with('error', 'Para reservar debes iniciar sesión');
+        }
+
         $sala = $request->input('sala');
         $hora_inicio = $request->input('hora_inicio');
         $pel_id = $request->input('pel_id');
@@ -53,6 +58,10 @@ $asientosArray = explode(",", $asientos);
      */
     public function handlePost(Request $request)
     {
+
+        if (empty(Auth::user())) {
+            return redirect('/')->with('error', 'Para reservar debes iniciar sesión');
+        }
 
         $sala = $request->input('sala');
         $hora_inicio = $request->input('hora_inicio');
