@@ -129,6 +129,9 @@
                             <li class=""><a
                                     class="bg-black z-10 hover:bg-gray-400 py-2 px-4 block whitespace-no-wrap"
                                     href="{{ route('preguntas') }}">Necesito ayuda</a></li>
+
+
+
                             <li class="">
                                 <form action="logout" method="post">
                                     @csrf
@@ -168,7 +171,11 @@
 
                     <div class="dropdown inline-block relative">
                         <button class="hover:animate-waving font-semibold rounded inline-flex items-center">
+                            @if (Auth::user()->rol == 'admin')
+                            <span style="-webkit-text-stroke: 0.8px red;" class="mr-1 text-5xl h-10 mt-12">{{ Auth::user()->name }}</span>
+                            @else
                             <span class="mr-1 text-5xl h-10 mt-12">{{ Auth::user()->name }}</span>
+                            @endif
                             <svg class="fill-current h-4 w-4 mt-12" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
                                 <path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z" />
                             </svg>
@@ -180,6 +187,11 @@
                             <li class=""><a
                                     class="bg-black hover:bg-gray-400 py-2 px-4 block whitespace-no-wrap"
                                     href="{{ route('preguntas') }}">Necesito ayuda</a></li>
+                                    @if (Auth::user()->rol == 'admin')
+                                    <li class=""><a style="-webkit-text-stroke: 0.3px red;"
+                                        class="bg-black z-10 hover:bg-gray-400 py-2 px-4 block whitespace-no-wrap"
+                                        href="{{ route('usuarios') }}">Lista usuarios</a></li>
+                                    @endif
                             <li class="">
                                 <form action="logout" method="post">
                                     @csrf

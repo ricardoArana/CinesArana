@@ -61,7 +61,11 @@ Route::get('/miPerfil', [CineController::class, 'miPerfil'])
 Route::post('/cambiarCineFav', [CineController::class, 'cambiarCineFav'])
 ->name('cambiarCineFav');
 
+Route::get('/usuarios', [CineController::class, 'usuarios'])
+->middleware(['auth'])->name('usuarios');
 
+Route::get('/modificarUsuario/{usuario}', [CineController::class, 'modificarUsuario'])
+->middleware(['auth'])->name('modificarUsuario');
 
 Route::get('/pdf', function () {
     $pdf = app('dompdf.wrapper');

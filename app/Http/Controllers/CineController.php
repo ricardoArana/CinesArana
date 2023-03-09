@@ -10,6 +10,7 @@ use App\Models\Localidad;
 use App\Models\Pelicula;
 use App\Models\Proyeccion;
 use App\Models\Reserva;
+use App\Models\User;
 use Barryvdh\DomPDF\PDF;
 use Illuminate\Support\Facades\Auth;
 
@@ -34,6 +35,22 @@ class CineController extends Controller
             'localidads' => Localidad::all(),
             'cines' => Cine::all(),
         ]);
+    }
+
+        public function usuarios()
+    {
+        if (Auth::user()->rol != 'admin') {
+            return redirect('/')->with('error', 'Has intentado acceder a una función de administrador');
+        }
+        return view('usuarios', [
+            'usuarios' => User::all(),
+        ]);
+    }
+
+    public function modificarUsuario(User $user)
+    {
+        return view('modificarUsuario', [
+            'usuario' => $user->get()[0]]);
     }
 
     public function peliculas()
