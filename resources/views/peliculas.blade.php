@@ -86,6 +86,11 @@
           </div>
     <div class=" h-auto bg-black text-white xl:mx-12 mt-5 pt-5">
 
+        @if (Auth::user()->rol == 'admin')
+        <div class="ml-[41.5%] mt-10 pb-10">
+            <a  class="bg-blue-700 hover:bg-blue-900 text-white font-bold text-3xl py-2 px-4 rounded focus:outline-none focus:shadow-outline" href="{{route('cines')}}">Añadir película</a></td>
+        </div>
+        @endif
 @foreach ($peliculas as $pelicula)
     <div class="lg:flex lg:justify-between mt-20 pb-12 mb-10">
         <div class="h-auto lg:ml-40 mb-20">
@@ -94,6 +99,11 @@
         <div class="h-auto lg:w-1/2 lg:mr-44 lg:mt-7 ml-16 text-xl text-left">
             <p class="text-3xl pb-3"><b>{{$pelicula->titulo}}</b></p>
             {{$pelicula->sinopsis}}
+            @if (Auth::user()->rol == 'admin')
+        <div class="mt-20">
+            <a  class="bg-blue-700 hover:bg-blue-900 text-white font-bold text-xl py-1 px-2 rounded focus:outline-none focus:shadow-outline" href="{{route('cines')}}">Modificar película</a></td>
+        </div>
+        @endif
 
         </div>
     </div>

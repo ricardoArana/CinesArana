@@ -12,6 +12,7 @@ use App\Models\Proyeccion;
 use App\Models\Reserva;
 use App\Models\User;
 use Barryvdh\DomPDF\PDF;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
 class CineController extends Controller
@@ -47,10 +48,39 @@ class CineController extends Controller
         ]);
     }
 
-    public function modificarUsuario(User $user)
+    public function updateUsuario(Request $request, $user)
+    {
+        $request->validate([
+            'name' => 'required',
+            'email' => 'required',
+            'rol' => 'required'
+        ]);
+
+        $usuario = User::where('id', $user)->first();
+        $usuario->name = $request->name;
+        $usuario->email = $request->email;
+        $usuario->rol = $request->rol;
+        $usuario->save();
+
+
+        return redirect('/usuarios')->with('success',  'Usuario actualizado');
+    }
+
+    public function deleteUsuario($user)
+    {
+
+        $usuario = User::where('id', $user)->first();
+        $usuario->reservas()->delete();
+        $usuario->delete();
+
+
+        return redirect('/usuarios')->with('success',  'Usuario borrado con éxito');
+    }
+
+    public function modificarUsuario($user)
     {
         return view('modificarUsuario', [
-            'usuario' => $user->get()[0]]);
+            'usuario' => User::where('id', $user)->first()]);
     }
 
     public function peliculas()

@@ -28,8 +28,12 @@
                         @else
                         <td class="whitespace-nowrap px-6 py-4">{{$usuario->rol}}</td>
                         @endif
-                        <td class="whitespace-nowrap px-6 py-4"><a href="{{route('modificarUsuario', $usuario)}}">Modificar</a></td>
-                        <td class="whitespace-nowrap px-6 py-4">Borrar</td>
+                        <td class="whitespace-nowrap px-6 py-4"><a  class="bg-blue-700 hover:bg-blue-900 text-white font-bold py-1 px-2 rounded focus:outline-none focus:shadow-outline" href="{{route('modificarUsuario', $usuario->id)}}">Modificar</a></td>
+                        <td class="whitespace-nowrap px-6 py-4"><form action="{{ route('deleteUsuario', $usuario->id) }}" method="post" onsubmit="return confirm('¿Seguro que quieres borrar este usuario? Se borrarán todas sus reservas');">
+                            @method('POST') @csrf
+                            <input class="bg-red-700 hover:bg-red-900 cursor-pointer text-white font-bold py-1 px-2 rounded focus:outline-none focus:shadow-outline" type="submit" value="Borrar">
+                            </form>
+                        </td>
                       </tr>
                       @endforeach
 

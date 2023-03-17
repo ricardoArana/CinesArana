@@ -67,6 +67,12 @@ Route::get('/usuarios', [CineController::class, 'usuarios'])
 Route::get('/modificarUsuario/{usuario}', [CineController::class, 'modificarUsuario'])
 ->middleware(['auth'])->name('modificarUsuario');
 
+Route::post('/updateUsuario/{usuario}', [CineController::class, 'updateUsuario'])
+->middleware(['auth'])->name('updateUsuario');
+
+Route::post('/deleteUsuario/{usuario}', [CineController::class, 'deleteUsuario'])
+->middleware(['auth'])->name('deleteUsuario');
+
 Route::get('/pdf', function () {
     $pdf = app('dompdf.wrapper');
     $user = Auth::user();
