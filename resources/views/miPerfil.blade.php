@@ -11,7 +11,7 @@
         background-color: #000000
     }
 </style>
-    <div class="h-28"></div>
+    <div class="h-40"></div>
     <div style="background-color: #373737;" class="text-3xl text-white text-center opacity-[98%] pt-5 pb-3 mb-3 mx-5" title="EL cine que selecciones te aparecerá por defecto en la página principal. Puedes cambiarlo cuando quieras.">
         <div id="cineFavorito" class="mt-3 mb-10 text-xl">
             @if ($user->cine_fav == '' || $user->cine_fav == 'nada')
@@ -144,8 +144,16 @@ dd($reservas->count())
                 </div>
 
             </div>
+            <div class="flex justify-center bg-gray-700 pb-10">
+                <div>
+            <p class="text-4xl mb-3 mt-3 text-center">Gracias por confiar en Cines Arana.</p>
+            <p class="text-2xl mb-5 text-center"> Muestra este código en la entrada de tu cine para acceder a la película "{{$reserva->pelicula->titulo}}":</p>
+            <p class="text-2xl mb-5 text-center"> O descarga el PDF al final de esta página </p>
+            <div class="ml-[40%]">{{QrCode::size(200)->generate('te quiero')}}</div>
         </div>
-    @endif
+        </div>
+        </div>
+        @endif
 @endforeach
 <div class="flex justify-center">
     <a class="text-white text-2xl bg-[#000c92] hover:bg-white hover:text-black border-2 border-black py-4 px-6 rounded btn btn-primary" href="{{  URL('/pdf')  }}">Descargar PDF</a>

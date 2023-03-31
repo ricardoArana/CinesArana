@@ -37,7 +37,7 @@
         }
         </style>
         <div class="w-full h-28"></div>
-        <div class="bg-black opacity-95 text-white p-0 carousel pt-5 rounded relative overflow-hidden shadow-xl border-2 border-white z-0">
+        <div class="bg-black opacity-95 text-white p-0 carousel pt-5 rounded relative border-2 border-white">
             <p class="text-6xl text-center">Películas</p>
             <div class="mb-0 pb-0">
               <!--Slide 1-->
@@ -85,15 +85,14 @@
             </div>
           </div>
     <div class=" h-auto bg-black text-white xl:mx-12 mt-5 pt-5">
-
         @if (Auth::user()->rol == 'admin')
         <div class="ml-[41.5%] mt-10 pb-10">
             <a  class="bg-blue-700 hover:bg-blue-900 text-white font-bold text-3xl py-2 px-4 rounded focus:outline-none focus:shadow-outline" href="{{route('cines')}}">Añadir película</a></td>
         </div>
         @endif
-@foreach ($peliculas as $pelicula)
-    <div class="lg:flex lg:justify-between mt-20 pb-12 mb-10">
-        <div class="h-auto lg:ml-40 mb-20">
+        @foreach ($peliculas as $pelicula)
+        <div class="lg:flex lg:justify-between mt-20 pb-12 mb-10">
+            <div class="h-auto lg:ml-40 mb-20">
             <img class="h-auto w-96 mx-auto border-2 border-white" src="{{ URL($pelicula->url) }}" alt="imagen de la pelicula">
         </div>
         <div class="h-auto lg:w-1/2 lg:mr-44 lg:mt-7 ml-16 text-xl text-left">

@@ -38,7 +38,7 @@ Route::get('/', [CineController::class, 'notuser'])
 ->name('notuser');
 
 Route::get('/dashboard', [CineController::class, 'index'])
-->name('inicio');
+->middleware(['auth'])->name('inicio');
 
 Route::get('/peliculas', [CineController::class, 'peliculas'])
 ->name('peliculas');
@@ -73,14 +73,25 @@ Route::post('/updateUsuario/{usuario}', [CineController::class, 'updateUsuario']
 Route::post('/deleteUsuario/{usuario}', [CineController::class, 'deleteUsuario'])
 ->middleware(['auth'])->name('deleteUsuario');
 
-Route::get('/pdf', function () {
+/* Route::get('/pdf', function () {
     $pdf = app('dompdf.wrapper');
     $user = Auth::user();
     $reservas = Auth::user()->reservas;
     $cines = Cine::all();
     $pdf->loadView('pruebaPdf', compact('user', 'cines', 'reservas'))->setOptions(['defaultFont' => 'sans-serif']);
     return $pdf->download('pruebapdf.pdf');
-  });
+  }); */
 
+  Route::get('/pdf', function () {
+    $user = Auth::user();
+    $reservas = Auth::user()->reservas;
+    $cines = Cine::all();
+    return view('pruebaPdf', [
+        'user' => $user,
+        'reservas' => $reservas,
+        'cines' => $cines,
+    ]);
+  })
+->middleware(['auth'])->name('pdf');
 
 require __DIR__.'/auth.php';

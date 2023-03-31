@@ -40,9 +40,10 @@
                 <option selected="true" value="Las Dunnas">Seleccione el cine </option>
                 {{-- <input type="text" hidden value="{{$cines->count()}}"> --}}
                 @foreach ($cines as $cine)
-                <option class="cinesOption" value="{{ $cine->nombre }}">{{ $cine->nombre }} </option>
+                <option value="{{ $cine->nombre }}">{{ $cine->nombre }} </option>
                 @endforeach
             </select>
+
         </div>
     </div>
     </form>
@@ -54,13 +55,26 @@
         @php
             $fecha = date('d-m-Y', strtotime('+1 day', time()));
             $localidadMostrar = $cineSelect->localidad;
-            echo "<b>$cineSelect->nombre</b> en <b>$localidadMostrar->nombre </b> a <b>$fecha</b>";
+            echo "<b>$cineSelect->nombre</b> en <b>$localidadMostrar->nombre </b> a ";
         @endphp
+        <select class="text-black">
+            <option> {{ date('d-m-Y', strtotime('+0 day', time())) }} </option>
+            <option> {{ date('d-m-Y', strtotime('+1 day', time())) }} </option>
+            <option> {{ date('d-m-Y', strtotime('+2 day', time())) }} </option>
+            <option> {{ date('d-m-Y', strtotime('+3 day', time())) }} </option>
+            <option> {{ date('d-m-Y', strtotime('+4 day', time())) }} </option>
+            <option> {{ date('d-m-Y', strtotime('+5 day', time())) }} </option>
+            <option> {{ date('d-m-Y', strtotime('+6 day', time())) }} </option>
+            <option> {{ date('d-m-Y', strtotime('+7 day', time())) }} </option>
+        </select>
     </p>
     @if ($peliculas->isEmpty())
         <p class="text-center text-2xl h-60 mt-32">
             Lo sentimos, parece que no hay películas disponibles para este cine</p>
     @endif
+    <div class="ml-[44%] my-5">
+        <button class="text-white text-2xl bg-[#760000] hover:bg-white hover:text-black border-2 border-black py-4 px-6 rounded btn btn-primary">Modificar cartelera</button >
+    </div>
     @foreach ($peliculas as $pelicula)
         <div class="lg:flex lg:justify-between mt-10 pb-12 mb-10 h-auto">
             <div class="w-96 h-auto mx-auto lg:ml-40 opacity-100">

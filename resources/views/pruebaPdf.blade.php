@@ -1,7 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        <!-- CDN de Tailwind CSS -->
+        <script src="https://cdn.tailwindcss.com"></script>
 
-<div style="background-color: #FDF4E4;" class="text-3xl text-center pt-5 pb-3 mb-3 mx-5">
+        <!-- Hoja de estilos Personalizada -->
+        <link rel="stylesheet" href="assets/css/estilos.css">
+    <title class='no-print'>Tu reserva</title>
+    <style>
+        @media print
+{
+    .no-print, .no-print *
+    {
+        display: none !important;
+    }
+}
+    </style>
+</head>
+<body>
+    <div class='no-print' style="margin:30px">
+        <a onclick="window.print();return false;" class="text-white text-2xl bg-[#000c92] hover:bg-white hover:text-black border-2 border-black py-4 px-6 rounded btn btn-primary" href="{{  URL('/pdf')  }}">Descargar PDF</a>
+        <a class="text-white text-2xl bg-[#000c92] hover:bg-white hover:text-black border-2 border-black py-4 px-6 rounded btn btn-primary" href="{{  URL('/miPerfil')  }}">Volver</a>
 
-@if ($reservas->isEmpty())
+        @if ($reservas->isEmpty())
 <div class="mt-20">
     <p class="h-60 text-2xl">No tienes reservas</p>
 </div>
@@ -16,8 +40,8 @@ $cine = '';
 $pelicula = '';
 $hora = '';
 @endphp
-<div style="margin-top: 2%; padding-top:1%; font-size: 0.5cm" class="mx-5">
-<p style="text-align: center; ">{{$user->name}}, estas son tus reservas: </p>
+<div class="w-[40%] ml-[33%] mt-10">
+<p class="text-center text-4xl w-[80%]">{{$user->name}}, esta es tu entrada: </p>
 </div>
 @foreach ($reservas as $reserva)
 @php
@@ -51,11 +75,11 @@ $hora = '';
             array_push($asientos, $asiento);
         } else {
             if ($cont < sizeof($reservas)) {
-            if ($reservas[$cont]->cine->id == $cineId && $reservas[$cont]->pelicula->id == $peliculaId
+                if ($reservas[$cont]->cine->id == $cineId && $reservas[$cont]->pelicula->id == $peliculaId
                 && $reservas[$cont]->hora_inicio == $horaId) {
-                $mostrar = false;
+                    $mostrar = false;
 
-            }
+                }
             else {
 
                 $mostrar = true;
@@ -74,38 +98,42 @@ $hora = '';
 @if ($mostrar)
 
 
-    <div style="border solid 1px; display: block; border-color:black" id="mostrarReserva" class="pt-3 mb-3 mx-5">
-        <div class="flex justify-between mt-20 pb-12 mb-10">
-            <div class="h-96 ml-40">
+    <div  id="mostrarReserva">
+        <div class="flex ml-[28%] mt-20 pb-12 mb-96 items-center">
+            <div class="h-auto">
             </div>
-            <div class="h-96 w-1/2 mr-44 ml-16 text-xl text-left">
-                <p class="text-3xl pb-3">Tiene {{ sizeof($asientos) }} reservas en <b>{{ $reserva->cine->nombre }}</b>
+            <div class="h-auto text-xl text-center p-5 w-[60%]" style="border: black 1px dotted">
+                <div class="h-auto w-[70%] xl:w-[25%] lg:ml-[10%] xl:ml-40 ml-[10%]">
+                </div>
+                <p class="text-xl pb-3">Tiene {{ sizeof($asientos) }} reservas en <b>{{ $reserva->cine->nombre }}</b>
                     ({{ $reserva->cine->localidad->nombre }})
                 </p>
                 <p class="text-xl"><b>{{$reserva->pelicula->titulo}}</b></p>
                 <p class="text-2xl"> </p>
                 <p class="text-xl my-4"> Hora de inicio: {{ $reserva->hora_inicio }} </p>
-                <p>Sala {{ $reserva->sala }}</p>
                 @if ($mostrar)
-                <div>
-                    <p> <b> Asientos: </b><br>
 
-                        @foreach ($asientos as $asiento)
-                            <span style="margin-right: 2%"> Fila: {{floor($asiento/16)+1}}</span> Asiento: {{$asiento%16+1}}<br>
-                        @endforeach
-                    </p>
-                </div>
+                <div class="flex justify-center bg-gray-500 pb-10 text-black">
+                    <div>
+                <p class="text-4xl mb-3 mt-3 text-center">Sala {{ $reserva->sala }}</p>
+                <p class="text-2xl mb-5 text-center"> <b> Asientos: </b><br>
 
-                    <p style="text-align: center; margin: 2px 0px 2px 0px">
-                        -------------------------------------------------------------------------------------
-                    </p>
+                    @foreach ($asientos as $asiento)
+                        <span style="margin-right: 2%"> Fila: {{floor($asiento/16)+1}}</span> Asiento: {{$asiento%16+1}}<br>
+                        @endforeach</p>
+                <div>{{QrCode::size(200)->generate($reserva->pelicula->titulo)}}</div>
+            </div>
+
                         @endif
 
 
             </div>
-
         </div>
     </div>
 @endif
 @endforeach
 @endif
+
+
+                        </body>
+                        </html>
