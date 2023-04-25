@@ -19,6 +19,7 @@ class Reservas extends Migration
             $table->foreignId('cine_id')->constrained('cines');
             $table->foreignId('pelicula_id')->constrained('peliculas');
             $table->string('hora_inicio');
+            $table->string('fecha');
             $table->smallInteger('sala');
             $table->smallInteger('asiento');
             $table->timestamps();
@@ -32,6 +33,7 @@ class Reservas extends Migration
      */
     public function down()
     {
-        //
+        Schema::dropIfExists('reservas');
+
     }
 }

@@ -55,6 +55,12 @@ Route::post('/reservar', [CineController::class, 'reservar'])
 Route::get('/preguntas', [CineController::class, 'preguntas'])
 ->middleware(['auth'])->name('preguntas');
 
+Route::get('/createPelicula', [CineController::class, 'createPelicula'])
+->middleware(['auth'])->name('createPelicula');
+
+Route::post('/storePelicula', [CineController::class, 'storePelicula'])
+->middleware(['auth'])->name('storePelicula');
+
 Route::get('/miPerfil', [CineController::class, 'miPerfil'])
 ->middleware(['auth'])->name('miPerfil');
 
@@ -72,6 +78,15 @@ Route::post('/updateUsuario/{usuario}', [CineController::class, 'updateUsuario']
 
 Route::post('/deleteUsuario/{usuario}', [CineController::class, 'deleteUsuario'])
 ->middleware(['auth'])->name('deleteUsuario');
+
+Route::post('/deletePelicula/{pelicula}', [CineController::class, 'deletePelicula'])
+->middleware(['auth'])->name('deletePelicula');
+
+Route::get('/modificarPelicula/{pelicula}', [CineController::class, 'modificarPelicula'])
+->middleware(['auth'])->name('modificarPelicula');
+
+Route::post('/updatePelicula/{pelicula}', [CineController::class, 'updatePelicula'])
+->middleware(['auth'])->name('updatePelicula');
 
 /* Route::get('/pdf', function () {
     $pdf = app('dompdf.wrapper');

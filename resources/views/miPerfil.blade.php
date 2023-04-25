@@ -127,7 +127,7 @@ dd($reservas->count())
                     <p class="text-3xl pb-3"><b>{{ $reserva->cine->nombre }}</b>
                         ({{ $reserva->cine->localidad->nombre }})
                     </p>
-                    <p class="text-2xl"> Tiene {{ sizeof($asientos) }} reservas en este cine</p>
+                    <p class="text-2xl"> Tiene {{ sizeof($asientos) }} reservas en este cine el <b>{{$reserva->fecha}}</b> </p>
                     <p class="text-xl my-4"> Hora de inicio: {{ $reserva->hora_inicio }} </p>
                     @if ($mostrar)
 

@@ -14,6 +14,7 @@ use App\Models\User;
 use Barryvdh\DomPDF\PDF;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 
 class CineController extends Controller
 {
@@ -36,6 +37,38 @@ class CineController extends Controller
             'localidads' => Localidad::all(),
             'cines' => Cine::all(),
         ]);
+    }
+
+    public function createPelicula()
+    {
+        return view('createPelicula');
+    }
+
+    public function storePelicula(Request $request){
+
+
+        $request->validate([
+            'titulo' => 'required',
+            'sinopsis' => 'required',
+            'duracion' => 'required',
+            'imagen' => 'required'
+        ]);
+
+        $data= new Pelicula();
+        $data->titulo = $request->titulo;
+        $data->sinopsis = $request->sinopsis;
+        $data->duracion = $request->duracion;
+
+        if($request->file('imagen')){
+            $file= $request->file('imagen');
+            $filename= 'img/'.date('YmdHi').$file->getClientOriginalName();
+            $file-> move(public_path('img'), $filename);
+            $data->url= $filename;
+        }
+
+        $data->save();
+        return redirect('/peliculas')->with('success', 'Pelicula añadida');;
+
     }
 
         public function usuarios()
@@ -77,6 +110,18 @@ class CineController extends Controller
         return redirect('/usuarios')->with('success',  'Usuario borrado con éxito');
     }
 
+    public function deletePelicula($peliculaid)
+    {
+
+        $pelicula = Pelicula::where('id', $peliculaid)->first();
+        $pelicula->reservas()->delete();
+        $pelicula->proyecciones()->delete();
+        $pelicula->delete();
+
+
+        return redirect('/peliculas')->with('success',  'Película borrada con éxito');
+    }
+
     public function modificarUsuario($user)
     {
         return view('modificarUsuario', [
@@ -88,6 +133,38 @@ class CineController extends Controller
         return view('peliculas', [
             'peliculas' => Pelicula::all(),
         ]);
+    }
+    public function modificarPelicula($peli)
+    {
+        return view('modificarPelicula', [
+            'pelicula' => Pelicula::where('id', $peli)->first()]);
+    }
+
+    public function updatePelicula(Request $request, $peli)
+    {
+        $request->validate([
+            'titulo' => 'required',
+            'sinopsis' => 'required',
+            'duracion' => 'required',
+            'imagen' => '',
+        ]);
+
+        $pelicula = Pelicula::where('id', $peli)->first();
+        $pelicula->titulo = $request->titulo;
+        $pelicula->duracion = $request->duracion;
+        $pelicula->sinopsis = $request->sinopsis;
+
+        if($request->file('imagen')){
+            $file= $request->file('imagen');
+            $filename= 'img/'.date('YmdHi').$file->getClientOriginalName();
+            $file-> move(public_path('img'), $filename);
+            $pelicula->url= $filename;
+        }
+
+        $pelicula->save();
+
+
+        return redirect('/peliculas')->with('success',  'pelicula actualizada');
     }
 
     public function cines()
@@ -123,9 +200,9 @@ class CineController extends Controller
             'hora_inicio' => 'required|string',
             'pel_id' => 'required|string',
             'cine_id' => 'required|string',
+            'fecha' => 'required|string',
             'asientos' => 'required|string'
         ]);
-
 
 
         //selecciono el usuario actual
@@ -134,15 +211,28 @@ class CineController extends Controller
         $asientosArray = explode(",", $validado['asientos']);
         //Hago tantas reservas como asientos haya
         for ($i = 0; $i < sizeof($asientosArray); $i++) {
-            $reserva = Reserva::create([
+
+            DB::table('reservas')->insert(
+                array('user_id' => $user->id,
+                      'cine_id' => $validado['cine_id'],
+                      'pelicula_id' => $validado['pel_id'],
+                      'fecha' => $validado['fecha'],
+                      'hora_inicio' => $validado['hora_inicio'],
+                      'sala' => $validado['sala'],
+                      'asiento' => $asientosArray[$i]
+            ));
+
+
+/*             $reserva = Reserva::create([
                 'user_id' => $user->id,
                 'cine_id' => $validado['cine_id'],
+                'fecha' => $validado['fecha'],
                 'pelicula_id' => $validado['pel_id'],
                 'hora_inicio' => $validado['hora_inicio'],
                 'sala' => $validado['sala'],
                 'asiento' => $asientosArray[$i]
             ]);
-            $reserva->save();
+            $reserva->save(); */
         }
 
         return redirect('/')->with('success', 'Reserva realizada con éxito');

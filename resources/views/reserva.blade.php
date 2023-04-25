@@ -5,7 +5,7 @@
         <p class="mb-5 text-white">Comprar entradas:</p>
         {{-- Obtener el nombre y la localidad del cine --}}
         <p class="mb-5 pb-5 text-2xl"><b>{{ $proyeccion->cine->nombre }}</b> en
-            <b>{{ $proyeccion->cine->localidad->nombre }} ({{ $proyeccion->hora_inicio }})</b>
+            <b>{{ $proyeccion->cine->localidad->nombre }} ({{ $proyeccion->hora_inicio }})</b> a <b>{{ $proyeccion->fecha }}</b>
         </p>
         <div class="flex justify-between mt-20 pb-12 mb-10">
             <div class="h-96 ml-40">
@@ -150,10 +150,11 @@
                     <input hidden type="text" value="{{ $proyeccion->cine->id }}" name="cine_id">
                     <input hidden type="text" value="{{ $proyeccion->sala }}" name="sala">
                     <input hidden type="text" value="{{ $proyeccion->hora_inicio }}" name="hora_inicio">
+                    <input hidden type="text" value="{{ $proyeccion->fecha }}" name="fecha">
                     <input id="pagar" value="Pagar" style="display: none" type="submit"
                         class="bg-[#000c92] hover:bg-black text-white font-bold py-1 px-2 rounded-full my-5">
                 </form>
-
+                {{-- boton para reservar gratis --}}
                 <form class="py-4" action="{{ route('reservar') }}" method="post">
                     @method('POST')
                     @csrf
@@ -162,6 +163,7 @@
                     <input hidden type="text" value="{{ $proyeccion->cine->id }}" name="cine_id">
                     <input hidden type="text" value="{{ $proyeccion->sala }}" name="sala">
                     <input hidden type="text" value="{{ $proyeccion->hora_inicio }}" name="hora_inicio">
+                    <input hidden type="text" value="{{ $proyeccion->fecha }}" name="fecha">
                     <input id="pagarPrueba" value="Reserva gratis" style="display: none" type="submit"
                         class="bg-[#000c92] text-xl mx-5 hover:bg-black text-white font-bold py-1 px-2 rounded-full my-5">
                 </form>

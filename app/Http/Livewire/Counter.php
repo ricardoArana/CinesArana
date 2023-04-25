@@ -12,7 +12,9 @@ class Counter extends Component
 {
     public $localidadLive = 'Sanlúcar de Bda';
     public $cineLive = 'cine1';
+    public $fechaLive ='24-04-2023';
     public $cont = 0;
+    public $contD = 0;
     public $boolColor = false;
 
     public function cineFav(){ //Pone el cine favorito en el option de la pagina principal
@@ -36,7 +38,10 @@ class Counter extends Component
 
     public function render()
     {
-
+        if ($this->contD == 0) {
+            $this->fechaLive = date('d-m-Y', strtotime('+1 day', time()));
+            $this->contD++;
+        }
         $this->cineFav();
         $cines = Localidad::where('nombre', $this->localidadLive)->get()[0]->cines;
         $cineSelect= Cine::where('nombre', $this->cineLive)->get()[0];
@@ -49,10 +54,12 @@ class Counter extends Component
     }
     public function peliculasByProyeccion()
     {
+
         $proyecciones = Cine::where('nombre', $this->cineLive)->get()[0]->proyecciones;
         $peliculasColl = collect([]);
         for ($i=0; $i < count($proyecciones); $i++) {
             $peliculasColl->push($proyecciones[$i]->pelicula);
+
         }
         return $peliculasColl->unique();
     }

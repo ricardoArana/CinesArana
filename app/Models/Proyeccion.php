@@ -9,6 +9,14 @@ class Proyeccion extends Model
 {
     use HasFactory;
 
+    protected $fillable = [
+        'cine_id',
+        'pelicula_id',
+        'fecha',
+        'hora_inicio',
+        'sala'
+    ];
+
     public function cine()
     {
         return $this->belongsTo(Cine::class);

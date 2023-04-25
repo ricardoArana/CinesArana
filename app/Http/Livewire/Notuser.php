@@ -10,6 +10,7 @@ class Notuser extends Component
 {
     public $localidadLive = 'Sanlúcar de Barrameda';
     public $cineLive = 'Las Dunnas';
+    public $fechaLive ='07-04-2023';
 
     public function render()
     {

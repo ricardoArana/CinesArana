@@ -67,6 +67,7 @@ $asientosArray = explode(",", $asientos);
         $hora_inicio = $request->input('hora_inicio');
         $pel_id = $request->input('pel_id');
         $cine_id = $request->input('cine_id');
+        $fecha = $request->input('fecha');
         $asientos = $request->input('asientos');
 
         $asientosArray = explode(",", $asientos);
@@ -77,6 +78,7 @@ $asientosArray = explode(",", $asientos);
                 'user_id' => Auth::user()->id,
                 'cine_id' => $cine_id,
                 'pelicula_id' => $pel_id,
+                'fecha' => $fecha,
                 'hora_inicio' => $hora_inicio,
                 'sala' => $sala,
                 'asiento' => $asientosArray[$i]

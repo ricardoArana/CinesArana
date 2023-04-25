@@ -20,10 +20,10 @@ class Proyeccions extends Migration
             $table->foreignId('pelicula_id')->constrained('peliculas');
             $table->smallInteger('sala');
             $table->string('hora_inicio');
-            $table->unique(['cine_id', 'pelicula_id', 'hora_inicio']);
+            $table->string('fecha');
+            $table->unique(['cine_id', 'pelicula_id', 'hora_inicio', 'fecha']);
             $table->timestamps();
         });
-        DB::statement('ALTER TABLE proyeccions ADD COLUMN asientos_reservados integer[]');
     }
 
     /**
@@ -33,6 +33,7 @@ class Proyeccions extends Migration
      */
     public function down()
     {
-        //
+        Schema::dropIfExists('proyeccions');
+
     }
 }

@@ -87,7 +87,7 @@
     <div class=" h-auto bg-black text-white xl:mx-12 mt-5 pt-5">
         @if (Auth::user()->rol == 'admin')
         <div class="ml-[41.5%] mt-10 pb-10">
-            <a  class="bg-blue-700 hover:bg-blue-900 text-white font-bold text-3xl py-2 px-4 rounded focus:outline-none focus:shadow-outline" href="{{route('cines')}}">Añadir película</a></td>
+            <a  class="bg-blue-700 hover:bg-blue-900 text-white font-bold text-3xl py-2 px-4 rounded focus:outline-none focus:shadow-outline" href="{{route('createPelicula')}}">Añadir película</a></td>
         </div>
         @endif
         @foreach ($peliculas as $pelicula)
@@ -98,9 +98,14 @@
         <div class="h-auto lg:w-1/2 lg:mr-44 lg:mt-7 ml-16 text-xl text-left">
             <p class="text-3xl pb-3"><b>{{$pelicula->titulo}}</b></p>
             {{$pelicula->sinopsis}}
+            <p class="mt-3">Duración: {{$pelicula->duracion}}</p>
             @if (Auth::user()->rol == 'admin')
         <div class="mt-20">
-            <a  class="bg-blue-700 hover:bg-blue-900 text-white font-bold text-xl py-1 px-2 rounded focus:outline-none focus:shadow-outline" href="{{route('cines')}}">Modificar película</a></td>
+            <a  class="bg-blue-700 hover:bg-blue-900 text-white font-bold text-xl py-1 px-2 rounded focus:outline-none focus:shadow-outline" href="{{route('modificarPelicula', $pelicula)}}">Modificar película</a>
+            <form class="mt-4" action="{{ route('deletePelicula', $pelicula->id) }}" method="post" onsubmit="return confirm('¿Seguro que quieres borrar esta película? Se borrarán todas las reservas y proyecciones de la misma');">
+                @method('POST') @csrf
+                <input class="bg-red-700 hover:bg-red-900 cursor-pointer text-white font-bold py-1 px-2 rounded focus:outline-none focus:shadow-outline" type="submit" value="Borrar película">
+                </form>
         </div>
         @endif
 

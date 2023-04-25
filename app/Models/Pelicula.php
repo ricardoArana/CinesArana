@@ -16,6 +16,6 @@ class Pelicula extends Model
 
     public function reservas()
     {
-        return $this->hasMany(Reservas::class);
+        return $this->hasMany(Reserva::class);
     }
 }

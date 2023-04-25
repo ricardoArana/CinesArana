@@ -30,7 +30,6 @@
             </select>
         </div>
     </div>
-    </form>
 </div>
 <div class="w-max h-16"></div>
 <div style="background-color: black" class="opacity-95 text-white h-auto border-black border-2">
@@ -41,7 +40,18 @@
             $localidadMostrar = $cineSelect->localidad;
             echo "<b>$cineSelect->nombre</b> en <b>$localidadMostrar->nombre </b> a <b>$fecha</b>";
         @endphp
+        <select class="text-black text-l" name="fechaOption" wire:model="fechaLive">
+            <option value="{{ date('d-m-Y', strtotime('+0 day', time())) }}"> {{ date('d-m-Y', strtotime('+0 day', time())) . ' (' . date('l', strtotime('+0 day', time())) . ')' }} </option>
+            <option value="{{ date('d-m-Y', strtotime('+1 day', time())) }}"> {{ date('d-m-Y', strtotime('+1 day', time())) . ' (' . date('l', strtotime('+1 day', time())) . ')' }} </option>
+            <option value="{{ date('d-m-Y', strtotime('+2 day', time())) }}"> {{ date('d-m-Y', strtotime('+2 day', time())) . ' (' . date('l', strtotime('+2 day', time())) . ')'}} </option>
+            <option value="{{ date('d-m-Y', strtotime('+3 day', time())) }}"> {{ date('d-m-Y', strtotime('+3 day', time())) . ' (' . date('l', strtotime('+3 day', time())) . ')'}} </option>
+            <option value="{{ date('d-m-Y', strtotime('+4 day', time())) }}"> {{ date('d-m-Y', strtotime('+4 day', time())) . ' (' . date('l', strtotime('+4 day', time())) . ')'}} </option>
+            <option value="{{ date('d-m-Y', strtotime('+5 day', time())) }}"> {{ date('d-m-Y', strtotime('+5 day', time())) . ' (' . date('l', strtotime('+5 day', time())) . ')'}} </option>
+            <option value="{{ date('d-m-Y', strtotime('+6 day', time())) }}"> {{ date('d-m-Y', strtotime('+6 day', time())) . ' (' . date('l', strtotime('+6 day', time())) . ')'}} </option>
+            <option value="{{ date('d-m-Y', strtotime('+7 day', time())) }}"> {{ date('d-m-Y', strtotime('+7 day', time())) . ' (' . date('l', strtotime('+7 day', time())) . ')'}} </option>
+        </select>
     </p>
+</form>
     @if ($peliculas->isEmpty())
         <p class="text-center text-2xl h-60 mt-32">
             Lo sentimos, parece que no hay películas disponibles para este cine</p>
@@ -58,7 +68,7 @@
                 {{ $pelicula->sinopsis }}
                 <p class="mt-5">
                 @foreach ($pelicula->proyecciones as $proyeccion)
-                    @if ($proyeccion->cine->nombre == $cineSelect->nombre)
+                    @if ($proyeccion->cine->nombre == $cineSelect->nombre && $proyeccion->fecha == $fechaLive)
                         <button class="bg-[#000c92] hover:bg-white text-white hover:text-black font-bold py-1 px-2 rounded-xl my-3 mr-5"><a
                                     href="{{ route('reserva', [$proyeccion]) }}">{{ $proyeccion->hora_inicio }}</a></button>
                                     @endif

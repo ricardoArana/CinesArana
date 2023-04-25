@@ -102,10 +102,11 @@ $hora = '';
         <div class="flex ml-[28%] mt-20 pb-12 mb-96 items-center">
             <div class="h-auto">
             </div>
+
             <div class="h-auto text-xl text-center p-5 w-[60%]" style="border: black 1px dotted">
                 <div class="h-auto w-[70%] xl:w-[25%] lg:ml-[10%] xl:ml-40 ml-[10%]">
                 </div>
-                <p class="text-xl pb-3">Tiene {{ sizeof($asientos) }} reservas en <b>{{ $reserva->cine->nombre }}</b>
+                <p class="text-xl pb-3">Tiene {{ sizeof($asientos) }} reservas en <b>{{ $reserva->cine->nombre }}</b> a <b>{{$reserva->fecha}}</b>
                     ({{ $reserva->cine->localidad->nombre }})
                 </p>
                 <p class="text-xl"><b>{{$reserva->pelicula->titulo}}</b></p>
