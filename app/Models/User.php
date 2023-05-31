@@ -25,6 +25,7 @@ class User extends Authenticatable
         'email',
         'rol',
         'password',
+        'codigo',
     ];
 
     /**
@@ -50,6 +51,12 @@ class User extends Authenticatable
     {
         return $this->hasMany(Reserva::class);
     }
+
+    public static function generateUniqueCode()
+{
+    return strval(mt_rand()) . uniqid();
+}
+
 }
 
 

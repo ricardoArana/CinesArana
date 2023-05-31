@@ -43,7 +43,7 @@
               <!--Slide 1-->
               <input class="carousel-open hidden" type="radio" id="carousel-1" name="carousel" aria-hidden="true" hidden=""
                 checked="checked">
-              <div class="carousel-item mb-14 mt-8 absolute opacity-0 bg-center bg-no-repeat bg-contain" style="height:500px; background-image: url({{ URL('img/avatar.jpg') }})">
+              <div class="carousel-item mb-14 mt-8 absolute opacity-0 bg-center bg-no-repeat bg-contain" style="height:500px; background-image: url({{ URL('img/mario.png') }})">
 
               </div>
 

@@ -11,7 +11,7 @@ use Livewire\Component;
 class Counter extends Component
 {
     public $localidadLive = 'Sanlúcar de Bda';
-    public $cineLive = 'cine1';
+    public $cineLive = 'Cine Estelar';
     public $fechaLive ='24-04-2023';
     public $cont = 0;
     public $contD = 0;

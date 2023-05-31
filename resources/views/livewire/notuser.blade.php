@@ -38,7 +38,7 @@
         @php
             $fecha = date('d-m-Y', strtotime('+1 day', time()));
             $localidadMostrar = $cineSelect->localidad;
-            echo "<b>$cineSelect->nombre</b> en <b>$localidadMostrar->nombre </b> a <b>$fecha</b>";
+            echo "<b>$cineSelect->nombre</b> en <b>$localidadMostrar->nombre </b> a";
         @endphp
         <select class="text-black text-l" name="fechaOption" wire:model="fechaLive">
             <option value="{{ date('d-m-Y', strtotime('+0 day', time())) }}"> {{ date('d-m-Y', strtotime('+0 day', time())) . ' (' . date('l', strtotime('+0 day', time())) . ')' }} </option>

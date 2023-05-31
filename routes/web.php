@@ -37,6 +37,7 @@ Route::post('/stripe-payment', [StripeController::class, 'handlePost'])->name('s
 Route::get('/', [CineController::class, 'notuser'])
 ->name('notuser');
 
+
 Route::get('/dashboard', [CineController::class, 'index'])
 ->middleware(['auth'])->name('inicio');
 
@@ -58,8 +59,18 @@ Route::get('/preguntas', [CineController::class, 'preguntas'])
 Route::get('/createPelicula', [CineController::class, 'createPelicula'])
 ->middleware(['auth'])->name('createPelicula');
 
+
+Route::get('/createCine', [CineController::class, 'createCine'])
+->middleware(['auth'])->name('createCine');
+
+Route::get('/crearHorario/{proyeccion}', [CineController::class, 'crearHorario'])
+->middleware(['auth'])->name('crearHorario');
+
 Route::post('/storePelicula', [CineController::class, 'storePelicula'])
 ->middleware(['auth'])->name('storePelicula');
+
+Route::post('/storeCine', [CineController::class, 'storeCine'])
+->middleware(['auth'])->name('storeCine');
 
 Route::get('/miPerfil', [CineController::class, 'miPerfil'])
 ->middleware(['auth'])->name('miPerfil');
@@ -67,11 +78,18 @@ Route::get('/miPerfil', [CineController::class, 'miPerfil'])
 Route::post('/cambiarCineFav', [CineController::class, 'cambiarCineFav'])
 ->name('cambiarCineFav');
 
+
+Route::post('/deleteCine/{cine}', [CineController::class, 'deleteCine'])
+->middleware(['auth'])->name('deleteCine');
+
 Route::get('/usuarios', [CineController::class, 'usuarios'])
 ->middleware(['auth'])->name('usuarios');
 
 Route::get('/modificarUsuario/{usuario}', [CineController::class, 'modificarUsuario'])
 ->middleware(['auth'])->name('modificarUsuario');
+
+Route::get('/reservasUsuario/{usuario}', [CineController::class, 'reservasUsuario'])
+->middleware(['auth'])->name('reservasUsuario');
 
 Route::post('/updateUsuario/{usuario}', [CineController::class, 'updateUsuario'])
 ->middleware(['auth'])->name('updateUsuario');
@@ -84,6 +102,12 @@ Route::post('/deletePelicula/{pelicula}', [CineController::class, 'deletePelicul
 
 Route::get('/modificarPelicula/{pelicula}', [CineController::class, 'modificarPelicula'])
 ->middleware(['auth'])->name('modificarPelicula');
+
+Route::get('/modificarCine/{cine}', [CineController::class, 'modificarCine'])
+->middleware(['auth'])->name('modificarCine');
+
+Route::post('/updateCine/{cine}', [CineController::class, 'updateCine'])
+->middleware(['auth'])->name('updateCine');
 
 Route::post('/updatePelicula/{pelicula}', [CineController::class, 'updatePelicula'])
 ->middleware(['auth'])->name('updatePelicula');

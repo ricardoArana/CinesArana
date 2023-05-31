@@ -17,6 +17,7 @@
             @if ($user->cine_fav == '' || $user->cine_fav == 'nada')
         <p class="mb-6"><b>{{$user->name}}</b>, no tienes <b>ningún cine </b> como favorito, puedes seleccionar uno aquí:</p>
 
+
         @else
 
         <p class="mb-6"><b>{{$user->name}}</b>, tu cine favorito es <b>{{$user->cine_fav}}</b>. Puedes cambiarlo aquí: <img src="{{ URL('img/interrogacion.png') }}" alt="icono de interrogacion" class="inline ml-10 w-5 h-5"></p>
@@ -54,8 +55,9 @@ dd($reservas->count())
     $pelicula = '';
     $hora = '';
 @endphp
-<div style="margin-top: 3%; padding-top:1%;background-color: black;" class="text-white mx-5">
+<div style="margin-top: 3%; padding-top:1%;background-color: black;" class="text-white mx-3 mb-5">
 <p class="pb-10 mt-5 text-4xl text-center">Estas son tus reservas: </p>
+<p class="pb-10 mt-5 text-2xl text-center">¡Tu entrada se encuentra al final de esta página! </p>
 </div>
 @foreach ($reservas as $reserva)
     @php
@@ -118,8 +120,8 @@ dd($reservas->count())
             @endforeach --}}
 
 
-        <div style="display: block; background-color:black" id="mostrarReserva" class="text-white pt-3 mb-3 mx-5">
-            <div class="lg:flex lg:justify-between mt-20 pb-12 mx-auto mb-10">
+        <div style="display: block; background-color:black" id="mostrarReserva" class="text-white pt-3 ">
+            <div class="lg:flex lg:justify-between mt-20 pb-12 ">
                 <div class="h-auto w-[60%] xl:w-[25%] lg:ml-[10%] xl:ml-40 ml-[10%]">
                     <img style="border: 5px solid white;" class="h-auto w-[100%]" src="{{ URL($reserva->pelicula->url) }}" alt="imagen de la pelicula">
                 </div>
@@ -144,19 +146,22 @@ dd($reservas->count())
                 </div>
 
             </div>
-            <div class="flex justify-center bg-gray-700 pb-10">
-                <div>
-            <p class="text-4xl mb-3 mt-3 text-center">Gracias por confiar en Cines Arana.</p>
-            <p class="text-2xl mb-5 text-center"> Muestra este código en la entrada de tu cine para acceder a la película "{{$reserva->pelicula->titulo}}":</p>
-            <p class="text-2xl mb-5 text-center"> O descarga el PDF al final de esta página </p>
-            <div class="ml-[40%]">{{QrCode::size(200)->generate('te quiero')}}</div>
-        </div>
+
         </div>
         </div>
         @endif
 @endforeach
+
 <div class="flex justify-center">
     <a class="text-white text-2xl bg-[#000c92] hover:bg-white hover:text-black border-2 border-black py-4 px-6 rounded btn btn-primary" href="{{  URL('/pdf')  }}">Descargar PDF</a>
     @endif
 </div>
+
+<div class="mt-10 justify-center bg-gray-600 py-10">
+    <div>
+<p class="text-4xl mb-3 mt-3 text-center">Gracias por confiar en Cines Arana.</p>
+<p class="text-2xl mb-5 text-center"> Muestra este código en la entrada de tu cine para acceder a la película.</p>
+<p class="text-2xl mb-5 text-center"> O descarga el PDF al final de esta página </p>
+<div class="ml-[44%] mb-10">{{QrCode::size(200)->generate(Auth::user()->codigo)}}</div>
+
 </x-guest-layout>

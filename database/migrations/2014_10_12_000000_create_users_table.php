@@ -19,9 +19,8 @@ class CreateUsersTable extends Migration
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
-            $table->string('cine_fav')->default('nada');
-            $cod = strval(mt_rand()) . uniqid(); //crea un numero unico basado en los ms
-            $table->string('codigo')->default($cod);  //esto se usa para mostrar la/s reserva/s de cada usuario.
+            $table->string('cine_fav')->default('nada');//crea un numero unico basado en los ms
+            $table->string('codigo')->default(strval(mt_rand()) . uniqid());  //esto se usa para mostrar la/s reserva/s de cada usuario.
             $table->rememberToken();
             $table->timestamps();
         });

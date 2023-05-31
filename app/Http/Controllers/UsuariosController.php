@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -44,5 +45,17 @@ class UsuariosController extends Controller
     {
         $usuario = DB::table('users')->where('email', '=', session()->get('usuario'))->select('name')->get();
         return $usuario[0]->name;
+    }
+
+
+    public function index(Request $request)
+    {
+        $query = $request->input('query');
+
+        $users = User::where('name', 'LIKE', "%$query%")
+            ->orWhere('email', 'LIKE', "%$query%")
+            ->get();
+
+        return view('users.index', compact('users', 'query'));
     }
 }

@@ -44,6 +44,21 @@ class CineController extends Controller
         return view('createPelicula');
     }
 
+    public function createCine()
+    {
+        return view('createCine', [
+            'localidads' => Localidad::all(),
+            'cines' => Cine::all(),
+        ]);
+    }
+
+    public function crearHorario($proyeccion)
+    {
+        return view('crearHorario', [
+            'proyeccion' => Proyeccion::where('id', $proyeccion)->get()[0],
+        ]);
+    }
+
     public function storePelicula(Request $request){
 
 
@@ -71,14 +86,44 @@ class CineController extends Controller
 
     }
 
-        public function usuarios()
+    public function storeCine(Request $request){
+
+
+        $request->validate([
+            'nombre' => 'required',
+            'descripcion' => 'required',
+            'asientos' => 'required',
+            'mapa' => 'required',
+            'localidad' => 'required'
+        ]);
+
+        $data= new Cine();
+        $data->nombre = $request->nombre;
+        $data->asientos = $request->asientos;
+        $localidad = Localidad::where('nombre', $request->localidad)->get()[0]->id;
+        $data->localidad_id = $localidad;
+        $data->descripcion = $request->descripcion;
+        $data->mapa = $request->mapa;
+
+
+        $data->save();
+        return redirect('/cines')->with('success', 'Cine añadido');;
+
+    }
+
+        public function usuarios(Request $request)
     {
         if (Auth::user()->rol != 'admin') {
             return redirect('/')->with('error', 'Has intentado acceder a una función de administrador');
         }
-        return view('usuarios', [
-            'usuarios' => User::all(),
-        ]);
+
+        $query = $request->input('query');
+
+        $users = User::where('name', 'LIKE', "%$query%")
+            ->orWhere('codigo', 'LIKE', "%$query%")
+            ->get();
+
+        return view('usuarios', compact('users', 'query'));
     }
 
     public function updateUsuario(Request $request, $user)
@@ -122,10 +167,29 @@ class CineController extends Controller
         return redirect('/peliculas')->with('success',  'Película borrada con éxito');
     }
 
+    public function deleteCine($cineid)
+    {
+
+        $cine = Cine::where('id', $cineid)->first();
+        $cine->reservas()->delete();
+        $cine->proyecciones()->delete();
+        $cine->delete();
+
+
+        return redirect('/cines')->with('success',  'Cine borrado con éxito');
+    }
+
     public function modificarUsuario($user)
     {
         return view('modificarUsuario', [
             'usuario' => User::where('id', $user)->first()]);
+    }
+
+    public function reservasUsuario($user)
+    {
+        return view('reservasUsuario', [
+            'usuario' => User::where('id', $user)->first(),
+            'reservas' => User::where('id', $user)->first()->reservas]);
     }
 
     public function peliculas()
@@ -165,6 +229,35 @@ class CineController extends Controller
 
 
         return redirect('/peliculas')->with('success',  'pelicula actualizada');
+    }
+
+    public function modificarCine($cine)
+    {
+        return view('modificarCine', [
+            'cine' => Cine::where('id', $cine)->first()]);
+    }
+
+    public function updateCine(Request $request, $cine)
+    {
+        $request->validate([
+            'nombre' => 'required',
+            'localidad' => 'required',
+            'descripcion' => 'required',
+            'asientos' => 'required',
+            'mapa' => 'required',
+        ]);
+
+        $cine = Cine::where('id', $cine)->first();
+        $cine->nombre = $request->nombre;
+        $cine->descripcion = $request->descripcion;
+        $cine->asientos = $request->asientos;
+        $cine->localidad_id = $request->localidad;
+        $cine->mapa = $request->mapa;
+
+        $cine->save();
+
+
+        return redirect('/cines')->with('success',  'cine actualizado');
     }
 
     public function cines()
@@ -262,69 +355,5 @@ class CineController extends Controller
         return redirect('/miPerfil')->with('success', 'cine favorito actualizado con éxito');
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \App\Http\Requests\StoreCineRequest  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(StoreCineRequest $request)
-    {
-        //
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\Cine  $cine
-     * @return \Illuminate\Http\Response
-     */
-    public function show(Cine $cine)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\Cine  $cine
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Cine $cine)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \App\Http\Requests\UpdateCineRequest  $request
-     * @param  \App\Models\Cine  $cine
-     * @return \Illuminate\Http\Response
-     */
-    public function update(UpdateCineRequest $request, Cine $cine)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Models\Cine  $cine
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(Cine $cine)
-    {
-        //
-    }
 }

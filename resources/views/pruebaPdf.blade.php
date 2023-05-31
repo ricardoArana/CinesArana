@@ -99,7 +99,7 @@ $hora = '';
 
 
     <div  id="mostrarReserva">
-        <div class="flex ml-[28%] mt-20 pb-12 mb-96 items-center">
+        <div class="flex ml-[28%] mt-20 pb-12 mb-20 items-center">
             <div class="h-auto">
             </div>
 
@@ -114,15 +114,15 @@ $hora = '';
                 <p class="text-xl my-4"> Hora de inicio: {{ $reserva->hora_inicio }} </p>
                 @if ($mostrar)
 
-                <div class="flex justify-center bg-gray-500 pb-10 text-black">
+                <div class="flex justify-center bg-gray-300 pb-10 text-black">
                     <div>
                 <p class="text-4xl mb-3 mt-3 text-center">Sala {{ $reserva->sala }}</p>
-                <p class="text-2xl mb-5 text-center"> <b> Asientos: </b><br>
+                <p class="text-2xl mb-5 text-left"> <b> Asientos: </b><br>
 
                     @foreach ($asientos as $asiento)
-                        <span style="margin-right: 2%"> Fila: {{floor($asiento/16)+1}}</span> Asiento: {{$asiento%16+1}}<br>
+                        <span style="margin-right: 0%"> Fila: {{floor($asiento/16)+1}}</span> Asiento: {{$asiento%16+1}}<br>
                         @endforeach</p>
-                <div>{{QrCode::size(200)->generate($reserva->pelicula->titulo)}}</div>
+
             </div>
 
                         @endif
@@ -133,6 +133,10 @@ $hora = '';
     </div>
 @endif
 @endforeach
+<div class="flex justify-center bg-gray-500 pb-10 text-black">
+    <div><p class="text-3xl mb-8">¡Muestra este código en tu entrada!</p>
+<div class="ml-[30%]">{{QrCode::size(200)->generate($reserva->pelicula->titulo)}} </div>
+</div>
 @endif
 
 
